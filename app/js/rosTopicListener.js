@@ -5,6 +5,10 @@ var dispatch = d3.dispatch("speak");
 
 var myStartCallback = function myStartCallback() {
     console.log('in my start callback');
+    var duration = 10;
+    dispatch.speak({
+        "duration": duration
+    });
 }
 
 var myEndCallback = function() {
@@ -15,17 +19,21 @@ var myEndCallback = function() {
 var myEndCallback2 = function() {
     console.log('in my end callback2');
     document.getElementsByClassName("punchLine")[0].click();
+    var duration = 8;
+    dispatch.speak({
+        "duration": duration
+    });
 }
 
 var myEndCallback3 = function() {
     console.log('in my end callback3');
     document.getElementById("rimShot").play();
-    setTimeout(function() {
-        document.getElementById("applause").play();
-    }, 2000);
-    setTimeout(function() {
-        document.getElementById("crickets").play();
-    }, 7000);
+    // setTimeout(function() {
+    //     document.getElementById("applause").play();
+    // }, 2000);
+    // setTimeout(function() {
+    //     document.getElementById("crickets").play();
+    // }, 7000);
 }
 
 // Connecting to ROS
@@ -63,10 +71,6 @@ listener.subscribe(function(message) {
     console.log('Received message on ' + listener.name + ': ' + message.data);
     if (message.data === TELL_JOKE) {
         document.getElementsByClassName("jokeOne")[0].click();
-        var duration = 14;
-        dispatch.speak({
-            "duration": duration
-        });
     }
 
     //listener.unsubscribe();
