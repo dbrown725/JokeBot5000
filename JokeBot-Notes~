@@ -1,0 +1,37 @@
+Jokebot notes
+
+Start Arduino from /opt/arduino-1.6.9 double click arduino
+
+See /Documents/Javascript/Arduino Notes for further information about Javascript receiving messages from Arduino. Notes about 
+connectivity issues and having to reset port permissions before uploading.
+
+Also note that rosserial loses connection with arduino from time to time.
+	dbrown@ArloBot:~$ rosrun rosserial_python serial_node.py /dev/ttyUSB0
+	[INFO] [WallTime: 1465689580.742964] ROS Serial Python Node
+	[INFO] [WallTime: 1465689580.753066] Connecting to /dev/ttyUSB0 at 57600 baud
+	[ERROR] [WallTime: 1465689597.859666] Unable to sync with device; possible link problem or link software version mismatch 		such as hydro rosserial_python with groovy Arduino
+	[INFO] [WallTime: 1465689605.634517] Note: publish buffer size is 280 bytes
+	[INFO] [WallTime: 1465689605.634810] Setup publisher on chatter [std_msgs/String]
+	[ERROR] [WallTime: 1465689620.317968] Lost sync with device, restarting...
+	[INFO] [WallTime: 1465689624.330380] Setup publisher on chatter [std_msgs/String
+
+Sometimes when starting rosserial you will get multiple failures before actually connecting
+[ERROR] [WallTime: 1465777825.585768] Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino
+[ERROR] [WallTime: 1465777840.586693] Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino
+etc.....
+
+Seems that after page refresh you need to manually execute a voice command before the message from ROS will trigger a voice message.
+
+MEAN Stack scaffolding
+https://www.npmjs.com/package/generator-angular-fullstack
+
+D3 and Angular
+http://www.delimited.io/blog/2014/7/16/d3-directives-in-angularjs
+
+Angular and Ros
+https://github.com/syrnick/angular-ros
+https://github.com/aleksandaratanasov/angular-ros
+https://groups.google.com/forum/#!topic/robot-web-tools/SdWOE90QZqU
+https://libraries.io/bower/roslibjs
+
+
