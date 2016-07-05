@@ -21,15 +21,58 @@
             .attr("width", svgWidth)
             .attr("height", svgHeight);
         loadRobotOne();
+
+        var data = {
+            jokes: [{
+                "joke": "What did the finger say to the thumb?",
+                "repeatJoke": "I do not know what did the finger say to the thumb?",
+                "punchLine": "I am in glove with you"
+            }, {
+                "joke": "What happens to a frog's car when it breaks down?",
+                "repeatJoke": "I do not know what happens to a frog's car when it breaks down?",
+                "punchLine": "It gets toad away."
+            }, {
+                "joke": "What did the duck say when he bought lipstick?",
+                "repeatJoke": "I do not know what did the duck say when he bought lipstick?",
+                "punchLine": "Put it on my bill."
+            }, {
+                "joke": "What do you call a pig that does karate?",
+                "repeatJoke": "I do not know What do you call a pig that does karate?",
+                "punchLine": " A pork chop."
+            }, {
+                "joke": "What starts with E, ends with E, and has only 1 letter in it?",
+                "repeatJoke": "I do not know what starts with E, ends with E, and has only 1 letter in it?",
+                "punchLine": "Envelope. "
+            }, {
+                "joke": "What do computers eat for a snack?",
+                "repeatJoke": "I do not know what do computers eat for a snack?",
+                "punchLine": "Microchips."
+            }, {
+                "joke": "How do trees access the internet?",
+                "repeatJoke": "I do not know how do trees access the internet?",
+                "punchLine": "They log in."
+            }, {
+                "joke": "What is the tallest building in the entire world? ",
+                "repeatJoke": "I do not know what is the tallest building in the entire world?",
+                "punchLine": "The library, because it has so many stories."
+            }, {
+                "joke": "What nails do carpenters hate to hit?",
+                "repeatJoke": "I do not know what nails do carpenters hate to hit?",
+                "punchLine": "Fingernails."
+            }]
+        };
+
+        // Local Cross Orgin error
+        // d3.json("jokes.json", function(error, jokes) {
+        //   console.log('error', error);
+        //   console.log('jokes', jokes);
+        // });
     </script>
 
     <input hidden class='intro' class='jokebot-intro' onclick='responsiveVoice.speak("I am the joke bot 5000, would you like to hear a joke?", "UK English Male", {volume: 1});' type='button' />
-
-    <input hidden class='jokeOne' onclick='responsiveVoice.speak("What did the finger say to the thumb?", "UK English Male",
-	{rate: 1, onstart: myStartCallback, onend: myEndCallback});' type='button' value='Play' />
-
-    <input hidden class='repeatQuestion' onclick='responsiveVoice.speak("I do not know what did the finger say to the thumb?", "UK English Female", {onend: myEndCallback2});' type='button' />
-    <input hidden class='punchLine' onclick='responsiveVoice.speak("I am in glove with you.", "UK English Male", {onend: myEndCallback3});' type='button' />
+    <input hidden class='joke' onclick='' type='button' />
+    <input hidden class='repeatJoke' onclick='' type='button' />
+    <input hidden class='punchLine' onclick='' type='button' />
 
     <audio hidden id="rimShot" controls>
         <source src="https://ia800501.us.archive.org/17/items/rimshot_739/rimshot.mp3" type="audio/mpeg"> Your browser does not support the audio element.
