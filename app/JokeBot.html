@@ -8,8 +8,8 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="js/rosTopicListener.js"></script>
     <script type="text/javascript" src="js/robotOne.js"></script>
+    <script type="text/javascript" src="js/robotTwo.js"></script>
     <script type="text/javascript" src="js/actions.js"></script>
-
 </head>
 <body>
     <script type="text/javascript" type="text/javascript">
@@ -20,6 +20,15 @@
         var svgContainer = d3.select("body").append("svg")
             .attr("width", svgWidth)
             .attr("height", svgHeight);
+
+        var wholeSvgRect = svgContainer.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", svgWidth)
+            .attr("height", svgHeight)
+            .style("fill", "white");
+
+        loadRobotTwo();
         loadRobotOne();
 
         var data = {
@@ -59,6 +68,26 @@
                 "joke": "What nails do carpenters hate to hit?",
                 "repeatJoke": "I do not know what nails do carpenters hate to hit?",
                 "punchLine": "Fingernails."
+            }, {
+                "joke": "Why couldn't the leopard play hide and seek? ",
+                "repeatJoke": "I do not know why couldn't the leopard play hide and seek? ",
+                "punchLine": "Because he was always spotted."
+            }, {
+                "joke": "Why is the barn so noisy? ",
+                "repeatJoke": "I do not know why is the barn so noisy?",
+                "punchLine": "Because the cows have horns."
+            }, {
+                "joke": "What did the banana say to the doctor?",
+                "repeatJoke": "I do not know what did the banana say to the doctor?",
+                "punchLine": "I'm not peeling well."
+            }, {
+                "joke": "What has more lives than a cat?",
+                "repeatJoke": "I do not know what has more lives than a cat?",
+                "punchLine": "A frog because it croaks every night. ."
+            }, {
+                "joke": "What stays in one corner but travels around the world?",
+                "repeatJoke": "I do not know What stays in one corner but travels around the world?",
+                "punchLine": "A stamp."
             }]
         };
 
@@ -69,7 +98,7 @@
         // });
     </script>
 
-    <input hidden class='intro' class='jokebot-intro' onclick='responsiveVoice.speak("I am the joke bot 5000, would you like to hear a joke?", "UK English Male", {volume: 1});' type='button' />
+    <input hidden class='intro' class='jokebot-intro' onclick='responsiveVoice.speak("I am joke bot 5000, would you like to hear a joke?", "UK English Male", {volume: 1});' type='button' />
     <input hidden class='joke' onclick='' type='button' />
     <input hidden class='repeatJoke' onclick='' type='button' />
     <input hidden class='punchLine' onclick='' type='button' />

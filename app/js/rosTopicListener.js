@@ -1,22 +1,30 @@
 const INTRO = 'INTRO';
 const TELL_JOKE = 'TELL_JOKE';
 // https://bl.ocks.org/mbostock/5872848
-var dispatch = d3.dispatch("speak");
+var dispatch = d3.dispatch("speak", "speakRepeat");
 
-var startJoke = function() {
-    var duration = 10;
+
+var startJoke = function(duration) {
     dispatch.speak({
         "duration": duration
     });
 }
 
-var startRepeatJoke = function() {
+var triggerJokeRepeat = function() {
     document.getElementsByClassName("repeatJoke")[0].click();
 }
 
-var startPunchLine = function() {
+var startJokeRepeat = function(duration) {
+    dispatch.speakRepeat({
+        "duration": duration
+    });
+}
+
+var triggerPunchLine = function() {
     document.getElementsByClassName("punchLine")[0].click();
-    var duration = 8;
+}
+
+var startPunchLine = function(duration) {
     dispatch.speak({
         "duration": duration
     });
@@ -24,12 +32,6 @@ var startPunchLine = function() {
 
 var rimShot = function() {
     document.getElementById("rimShot").play();
-    // setTimeout(function() {
-    //     document.getElementById("applause").play();
-    // }, 2000);
-    // setTimeout(function() {
-    //     document.getElementById("crickets").play();
-    // }, 7000);
 }
 
 // Connecting to ROS
@@ -64,17 +66,16 @@ var listener = new ROSLIB.Topic({
 var lastDate = new Date((new Date()).getTime() - 10000);
 
 listener.subscribe(function(message) {
-    console.log('Received message on ' + listener.name + ': ' + message.data);
     var voiceTypeMale = '"UK English Male",';
     var voiceTypeFemale = '"UK English Female",';
     if (message.data === TELL_JOKE) {
         var nextJokeIndex = Math.floor((Math.random() * data.jokes.length));
         var onClickJoke = 'responsiveVoice.speak("' + data.jokes[nextJokeIndex].joke + '", ' + voiceTypeMale +
-        '{rate: 1, onstart: startJoke, onend: startRepeatJoke});';
+        '{rate: 1, onstart: startJoke("' + calculateJokeDuration(data.jokes[nextJokeIndex].joke) + '"), onend: triggerJokeRepeat});';
         var onClickRepeatJoke = 'responsiveVoice.speak("' +  data.jokes[nextJokeIndex].repeatJoke + '", ' + voiceTypeFemale +
-        '{onend: startPunchLine});';
+        '{onstart: startJokeRepeat("' + calculateJokeDuration(data.jokes[nextJokeIndex].repeatJoke) + '"), onend: triggerPunchLine});';
         var onClickPunchLine = 'responsiveVoice.speak("' +  data.jokes[nextJokeIndex].punchLine + '", ' + voiceTypeMale +
-        '{onend: rimShot});';
+        '{onstart: startPunchLine("' + calculateJokeDuration(data.jokes[nextJokeIndex].punchLine) + '"),onend: rimShot});';
 
         document.getElementsByClassName("joke")[0].setAttribute("onclick", onClickJoke);
         document.getElementsByClassName("repeatjoke")[0].setAttribute("onclick", onClickRepeatJoke);
@@ -93,3 +94,13 @@ listener.subscribe(function(message) {
     }
 
 });
+
+function calculateJokeDuration(text) {
+    var result = Math.floor(text.length/3);
+    //make sure it is an even number
+    var rem = result % 2;
+    if(rem > 0) {
+        result = result + 1;
+    }
+    return result;
+}
