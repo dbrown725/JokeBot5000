@@ -12,7 +12,7 @@ function loadRobotTwo() {
     var robotTwoGroupStartY = 25;
 
     /**
-    * For robot one builds Array containing params x/y line coordinates
+    * For robot two builds Array containing params x/y line coordinates
     * @param {Integer} x coordinate for starting point of line
     * @param {Integer} y coordinate for starting point of line
     * @param {Integer} x coordinate for ending point of line
@@ -27,7 +27,7 @@ function loadRobotTwo() {
     }
 
     /**
-    * Builds robot one circle element and adds to element passed in
+    * Builds robot two circle element and adds to element passed in
     * @param {Element} addToElement element to add the circle to
     * @param {Integer} circle center x coordinate
     * @param {Integer} circle center y coordinate

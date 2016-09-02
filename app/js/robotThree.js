@@ -28,201 +28,80 @@ function loadRobotThree() {
             robotThreeGroupStartY + y2);
     }
 
-    var leftAntenaGraph = robotThreeGroupHead.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(440, 170, 415, 130)))
-        .attr("stroke", "#999999")
-        .attr("stroke-width", 6)
-        .attr("fill", "none");
+    /**
+    * Builds robot three circle element and adds to element passed in
+    * @param {Element} addToElement element to add the circle to
+    * @param {Integer} circle center x coordinate
+    * @param {Integer} circle center y coordinate
+    * @param {Integer} radius of circle
+    * @param {String} id for circle
+    * @param {String} circle fill color
+    * @param {Integer} circle opacity
+    * @return {Element} circle
+    */
+    var buildAndAppendCircleRobotThree = function(addToElement, cx, cy, radius, id, fillColor, opacity) {
+        return buildAndAppendCircle(addToElement, robotThreeGroupStartX + cx, robotThreeGroupStartY + cy, radius, id, fillColor, opacity);
+    }
 
-    var leftAntenaCircle = robotThreeGroupHead.append("circle")
-        .attr("cx", robotThreeGroupStartX + 415)
-        .attr("cy", robotThreeGroupStartY + 130)
-        .attr("r", 12)
-        .attr("id", "lAntenaCrcl")
-        .attr("fill", "#e69500")
-        .style("opacity", 1);
+    /**
+    * Builds rectangle element and adds to element passed in
+    * @param {Element} addToElement element to add the rect to
+    * @param {Integer} rect starting upper left corner x coordinate
+    * @param {Integer} rect starting upper left corner y coordinate
+    * @param {Integer} width of rect
+    * @param {Integer} height of rect
+    * @param {String} id for rect
+    * @param {String} rect fill color
+    * @param {Integer} rect opacity
+    * @return {Element} rectangle
+    */
+    var buildAndAppendRectRobotThree = function(addToElement, x, y, width, height, id, fillColor, opacity) {
+        return buildAndAppendRect(addToElement, robotThreeGroupStartX + x, robotThreeGroupStartY + y, width, height, id, fillColor, opacity);
+    }
 
+    /**
+    * Adds startX and startY values to xy array values
+    * and calls buildXYPointObjectArray
+    * @param {Array} array of xy arrays
+    * @return {Array} array of x y data point objects
+    */
+    var buildRobotThreeXYPointArray = function(data) {
+        var xy = [];
+        for (var i = 0; i < data.length; i++) {
+            xy.push([
+                robotThreeGroupStartX + data[i][0],
+                robotThreeGroupStartY + data[i][1]
+            ])
+        }
+        return buildXYPointObjectArray(xy);
+    }
 
-    var leftAntenaBoltData1 = [{
-        "x": robotThreeGroupStartX + 390,
-        "y": robotThreeGroupStartY + 130
-    }, {
-        "x": robotThreeGroupStartX + 360,
-        "y": robotThreeGroupStartY + 150
-    }, {
-        "x": robotThreeGroupStartX + 340,
-        "y": robotThreeGroupStartY + 130
-    }, {
-        "x": robotThreeGroupStartX + 325,
-        "y": robotThreeGroupStartY + 150
-    }, {
-        "x": robotThreeGroupStartX + 315,
-        "y": robotThreeGroupStartY + 130
-    }, {
-        "x": robotThreeGroupStartX + 310,
-        "y": robotThreeGroupStartY + 150
-    }];
+    var leftAntena = buildAndAppendPath(robotThreeGroupHead, buildLineDataRobotThree(440, 170, 415, 130), "#999999", 6, "leftAntenaGraph", "");
+    var leftAntenaCircle = buildAndAppendCircleRobotThree(robotThreeGroupHead, 415, 130, 12, "leftAntenaCircle", "#e69500", 1);
+    var leftAntenaBoltData1 = buildRobotThreeXYPointArray([[390, 130],[360,150],[340,130],[325,150],[315,130],[310,150]]);
+    var robotThreeLeftAntenaBoltLineGraph1 = buildAndAppendPath(robotThreeGroupHead, leftAntenaBoltData1, "white", 3, "robotThreeLeftAntenaBoltLineGraph1", "none");
+    var leftAntenaBoltData2 = buildRobotThreeXYPointArray([[420, 110],[435,95],[425,75],[440,60],[430,50],[445,45]]);
+    var robotThreeLeftAntenaBoltLineGraph2 = buildAndAppendPath(robotThreeGroupHead, leftAntenaBoltData2, "white", 3, "robotThreeLeftAntenaBoltLineGraph2", "none");
 
-    var robotThreeLeftAntenaBoltLineGraph1 = d3.select("#robotThreeGroupHead").append("path")
-        .attr("d", lineDataAccessor(leftAntenaBoltData1))
-        .attr("stroke", "white")
-        .attr("stroke-width", 3)
-        .attr("fill", "none")
-        .attr("id", "robotThreeLeftAntenaBoltLineGraph1");
+    var rightAntena = buildAndAppendPath(robotThreeGroupHead, buildLineDataRobotThree(560, 170, 585, 130), "#999999", 6, "rightAntenaGraph", "none");
+    var rightAntenaCircle = buildAndAppendCircleRobotThree(robotThreeGroupHead, 585, 130, 12, "rightAntenaCircle", "#e69500", 1);
+    var rightAntenaBoltData1 = buildRobotThreeXYPointArray([[610, 130],[635,150],[660,140],[685,160],[710,150],[735,170]]);
+    var robotThreeRightAntenaBoltLineGraph1 = buildAndAppendPath(robotThreeGroupHead, rightAntenaBoltData1, "white", 3, "robotThreeRightAntenaBoltLineGraph1", "none");
+    var rightAntenaBoltData2 = buildRobotThreeXYPointArray([[585, 100],[600,75],[580,55],[600,40],[580,30],[600,15]]);
+    var robotThreeRightAntenaBoltLineGraph2 = buildAndAppendPath(robotThreeGroupHead, rightAntenaBoltData2, "white", 3, "robotThreeRightAntenaBoltLineGraph2", "none");
 
-    var leftAntenaBoltData2 = [{
-        "x": robotThreeGroupStartX + 420,
-        "y": robotThreeGroupStartY + 110
-    }, {
-        "x": robotThreeGroupStartX + 435,
-        "y": robotThreeGroupStartY + 95
-    }, {
-        "x": robotThreeGroupStartX + 425,
-        "y": robotThreeGroupStartY + 75
-    }, {
-        "x": robotThreeGroupStartX + 440,
-        "y": robotThreeGroupStartY + 60
-    }, {
-        "x": robotThreeGroupStartX + 430,
-        "y": robotThreeGroupStartY + 50
-    }, {
-        "x": robotThreeGroupStartX + 445,
-        "y": robotThreeGroupStartY + 45
-    }];
+    var robotThreeHead = buildAndAppendCircleRobotThree(robotThreeGroupHead, 500, 285, 135, "robotThreeHead", "#ccffe5", 1);
+    var robotThreeHeadHide = buildAndAppendRectRobotThree(robotThreeGroupHead, 366, 271, 268, 28, "robotThreeHeadHide", "robotThreeHeadHide", "white", 1);
 
-    var robotThreeLeftAntenaBoltLineGraph2 = d3.select("#robotThreeGroupHead").append("path")
-        .attr("d", lineDataAccessor(leftAntenaBoltData2))
-        .attr("stroke", "white")
-        .attr("stroke-width", 3)
-        .attr("fill", "none")
-        .attr("id", "robotThreeLeftAntenaBoltLineGraph2");
+    var robotThreeSpeaker = buildAndAppendRectRobotThree(robotThreeGroupHead, 365, 269, 270, 32, "robotThreeSpeaker", "yellow", 1);
 
-    var rightAntenaGraph = robotThreeGroupHead.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(560, 170, 585, 130)))
-        .attr("stroke", "#999999")
-        .attr("stroke-width", 6)
-        .attr("fill", "none");
+    var robotThreeHeadLeftEye = buildAndAppendCircleRobotThree(robotThreeGroupHead, 440, 215, 20, "robotThreeHeadLeftEye", "white", 1);
+    var robotThreeHeadRightEye = buildAndAppendCircleRobotThree(robotThreeGroupHead, 560, 215, 20, "robotThreeHeadRightEye", "white", 1);
+    var robotThreeHeadLeftEyePupil = buildAndAppendCircleRobotThree(robotThreeGroupHead, 440, 215, 12, "robotThreeHeadLeftEyePupil", "black", 1);
+    var robotThreeHeadRightEyePupil = buildAndAppendCircleRobotThree(robotThreeGroupHead, 560, 215, 12, "robotThreeHeadRightEyePupil", "black", 1);
 
-    var rightAntenaCircle = robotThreeGroupHead.append("circle")
-        .attr("cx", robotThreeGroupStartX + 585)
-        .attr("cy", robotThreeGroupStartY + 130)
-        .attr("r", 12)
-        .style("fill", "#e69500")
-        .style("opacity", 1);
+    var robotThreeBody = buildAndAppendRectRobotThree(robotThreeGroupBody, 350, 300, 300, 200, "robotThreeBody", "#ccffe5", 1);
 
-    var rightAntenaBoltData1 = [{
-        "x": robotThreeGroupStartX + 610,
-        "y": robotThreeGroupStartY + 130
-    }, {
-        "x": robotThreeGroupStartX + 635,
-        "y": robotThreeGroupStartY + 150
-    }, {
-        "x": robotThreeGroupStartX + 660,
-        "y": robotThreeGroupStartY + 140
-    }, {
-        "x": robotThreeGroupStartX + 685,
-        "y": robotThreeGroupStartY + 160
-    }, {
-        "x": robotThreeGroupStartX + 710,
-        "y": robotThreeGroupStartY + 150
-    }, {
-        "x": robotThreeGroupStartX + 735,
-        "y": robotThreeGroupStartY + 170
-    }];
-
-    var robotThreeRightAntenaBoltLineGraph1 = d3.select("#robotThreeGroupHead").append("path")
-        .attr("d", lineDataAccessor(rightAntenaBoltData1))
-        .attr("stroke", "white")
-        .attr("stroke-width", 3)
-        .attr("fill", "none")
-        .attr("id", "robotThreeRightAntenaBoltLineGraph1");
-
-    var rightAntenaBoltData2 = [{
-        "x": robotThreeGroupStartX + 585,
-        "y": robotThreeGroupStartY + 100
-    }, {
-        "x": robotThreeGroupStartX + 600,
-        "y": robotThreeGroupStartY + 75
-    }, {
-        "x": robotThreeGroupStartX + 580,
-        "y": robotThreeGroupStartY + 55
-    }, {
-        "x": robotThreeGroupStartX + 600,
-        "y": robotThreeGroupStartY + 40
-    }, {
-        "x": robotThreeGroupStartX + 580,
-        "y": robotThreeGroupStartY + 30
-    }, {
-        "x": robotThreeGroupStartX + 600,
-        "y": robotThreeGroupStartY + 15
-    }];
-
-    var robotThreeRightAntenaBoltLineGraph2 = d3.select("#robotThreeGroupHead").append("path")
-        .attr("d", lineDataAccessor(rightAntenaBoltData2))
-        .attr("stroke", "white")
-        .attr("stroke-width", 3)
-        .attr("fill", "none")
-        .attr("id", "robotThreeRightAntenaBoltLineGraph2");
-
-    var robotThreeHead = robotThreeGroupHead.append("circle")
-        .attr("cx", robotThreeGroupStartX + 500)
-        .attr("cy", robotThreeGroupStartY + 285)
-        .attr("r", 135)
-        .style("fill", "#ccffe5")
-        .style("opacity", 1);
-
-    var robotThreeHeadHide = robotThreeGroupHead.append("rect")
-        .attr("x", robotThreeGroupStartX + 360)
-        .attr("y", robotThreeGroupStartY + 270)
-        .attr("width", 280)
-        .attr("height", 30)
-        .style("fill", "White")
-        .style("opacity", 1);
-
-    var robotThreeHeadSpeak = robotThreeGroupHead.append("rect")
-        .attr("x", robotThreeGroupStartX + 365)
-        .attr("y", robotThreeGroupStartY + 270)
-        .attr("width", 269)
-        .attr("height", 30)
-        .attr("fill", "yellow")
-        .attr("id", "robotThreeSpeaker")
-        .style("opacity", 1);
-
-    var robotThreeHeadLeftEye = robotThreeGroupHead.append("circle")
-        .attr("cx", robotThreeGroupStartX + 440)
-        .attr("cy", robotThreeGroupStartY + 215)
-        .attr("r", 20)
-        .style("fill", "white")
-        .style("opacity", 1);
-
-    var robotThreeHeadRightEye = robotThreeGroupHead.append("circle")
-        .attr("cx", robotThreeGroupStartX + 560)
-        .attr("cy", robotThreeGroupStartY + 215)
-        .attr("r", 20)
-        .style("fill", "white")
-        .style("opacity", 1);
-
-    var robotThreeHeadLeftEyePupil = robotThreeGroupHead.append("circle")
-        .attr("cx", robotThreeGroupStartX + 440)
-        .attr("cy", robotThreeGroupStartY + 215)
-        .attr("r", 12)
-        .style("fill", "black")
-        .style("opacity", 1);
-
-    var robotThreeHeadRightEyePupil = robotThreeGroupHead.append("circle")
-        .attr("cx", robotThreeGroupStartX + 560)
-        .attr("cy", robotThreeGroupStartY + 215)
-        .attr("r", 12)
-        .style("fill", "black")
-        .style("opacity", 1);
-
-    var robotThreeBody = robotThreeGroupBody.append("rect")
-        .attr("x", robotThreeGroupStartX + 350)
-        .attr("y", robotThreeGroupStartY + 300)
-        .attr("width", 300)
-        .attr("height", 200)
-        .style("fill", "#ccffe5")
-        .style("opacity", 1);
 
     var robotThreeGroupLeftArm = robotThreeGroupBody.append("g");
 
