@@ -25,3 +25,23 @@ var buildLineData = function(x1, y1, x2, y2) {
         "y": y2
     }]
 }
+
+/**
+* Builds circle element and adds to element passed in
+* @param {Element} addToElement element to add the circle to
+* @param {Integer} circle center x coordinate
+* @param {Integer} circle center y coordinate
+* @param {Integer} radius of circle
+* @param {String} id for circle
+* @param {String} circle fill color
+* @param {String} circle opacity
+*/
+var buildAndAppendCircle = function(addToElement, cx, cy, radius, id, fillColor, opacity) {
+    addToElement.append("circle")
+        .attr("cx", cx)
+        .attr("cy", cy)
+        .attr("r", radius)
+        .attr("id", id)
+        .style("fill", fillColor)
+        .style("opacity", opacity);
+}

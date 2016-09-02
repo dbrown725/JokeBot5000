@@ -26,20 +26,27 @@ function loadRobotOne() {
             robotOneGroupStartY + y2);
     }
 
+    /**
+    * Builds robot one circle element and adds to element passed in
+    * @param {Element} addToElement element to add the circle to
+    * @param {Integer} circle center x coordinate
+    * @param {Integer} circle center y coordinate
+    * @param {Integer} radius of circle
+    * @param {String} id for circle
+    * @param {String} circle fill color
+    * @param {String} circle opacity
+    */
+    var buildAndAppendCircleRobotOne = function(addToElement, cx, cy, radius, id, fillColor, opacity) {
+        buildAndAppendCircle(addToElement, robotOneGroupStartX + cx, robotOneGroupStartY + cy, radius, id, fillColor, opacity);
+    }
+
     var leftAntenaGraph = robotOneGroupHead.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotOne(440, 170, 415, 130)))
         .attr("stroke", "#999999")
         .attr("stroke-width", 6)
         .attr("fill", "none");
 
-    var leftAntenaCircle = robotOneGroupHead.append("circle")
-        .attr("cx", robotOneGroupStartX + 415)
-        .attr("cy", robotOneGroupStartY + 130)
-        .attr("r", 12)
-        .attr("id", "lAntenaCrcl")
-        .attr("fill", "#e69500")
-        .style("opacity", 1);
-
+    var leftAntenaCircle = buildAndAppendCircleRobotOne(robotOneGroupHead, 415, 130, 12, "leftAntenaCircle", "#e69500", 1);
 
     var leftAntenaBoltData1 = [{
         "x": robotOneGroupStartX + 390,
@@ -101,12 +108,8 @@ function loadRobotOne() {
         .attr("stroke-width", 6)
         .attr("fill", "none");
 
-    var rightAntenaCircle = robotOneGroupHead.append("circle")
-        .attr("cx", robotOneGroupStartX + 585)
-        .attr("cy", robotOneGroupStartY + 130)
-        .attr("r", 12)
-        .style("fill", "#e69500")
-        .style("opacity", 1);
+    var rightAntenaCircle = buildAndAppendCircleRobotOne(robotOneGroupHead, 585, 130, 12, "rightAntenaCircle", "#e69500", 1);
+
 
     var rightAntenaBoltData1 = [{
         "x": robotOneGroupStartX + 610,
@@ -162,12 +165,7 @@ function loadRobotOne() {
         .attr("fill", "none")
         .attr("id", "robotOneRightAntenaBoltLineGraph2");
 
-    var robotOneHead = robotOneGroupHead.append("circle")
-        .attr("cx", robotOneGroupStartX + 500)
-        .attr("cy", robotOneGroupStartY + 285)
-        .attr("r", 135)
-        .style("fill", "#cce6ff")
-        .style("opacity", 1);
+    var robotOneHead = buildAndAppendCircleRobotOne(robotOneGroupHead, 500, 285, 135, "robotOneHead", "#cce6ff", 1);
 
     var robotOneHeadHide = robotOneGroupHead.append("rect")
         .attr("x", robotOneGroupStartX + 360)
@@ -176,7 +174,6 @@ function loadRobotOne() {
         .attr("height", 30)
         .style("fill", "White")
         .style("opacity", 1);
-
 
     var robotOneHeadSpeak = robotOneGroupHead.append("rect")
         .attr("x", robotOneGroupStartX + 365)
@@ -187,33 +184,11 @@ function loadRobotOne() {
         .attr("id", "robotOneSpeaker")
         .style("opacity", 1);
 
-    var robotOneHeadLeftEye = robotOneGroupHead.append("circle")
-        .attr("cx", robotOneGroupStartX + 440)
-        .attr("cy", robotOneGroupStartY + 215)
-        .attr("r", 20)
-        .style("fill", "white")
-        .style("opacity", 1);
+    var robotOneHeadLeftEye = buildAndAppendCircleRobotOne(robotOneGroupHead, 440, 215, 20, "robotOneHeadLeftEye", "white", 1);
+    var robotOneHeadRightEye = buildAndAppendCircleRobotOne(robotOneGroupHead, 560, 215, 20, "robotOneHeadRightEye", "white", 1);
+    var robotOneHeadLeftEyePupil = buildAndAppendCircleRobotOne(robotOneGroupHead, 440, 215, 12, "robotOneHeadLeftEyePupil", "black", 1);
+    var robotOneHeadRightEyePupil = buildAndAppendCircleRobotOne(robotOneGroupHead, 560, 215, 12, "robotOneHeadRightEyePupil", "black", 1);
 
-    var robotOneHeadRightEye = robotOneGroupHead.append("circle")
-        .attr("cx", robotOneGroupStartX + 560)
-        .attr("cy", robotOneGroupStartY + 215)
-        .attr("r", 20)
-        .style("fill", "white")
-        .style("opacity", 1);
-
-    var robotOneHeadLeftEyePupil = robotOneGroupHead.append("circle")
-        .attr("cx", robotOneGroupStartX + 440)
-        .attr("cy", robotOneGroupStartY + 215)
-        .attr("r", 12)
-        .style("fill", "black")
-        .style("opacity", 1);
-
-    var robotOneHeadRightEyePupil = robotOneGroupHead.append("circle")
-        .attr("cx", robotOneGroupStartX + 560)
-        .attr("cy", robotOneGroupStartY + 215)
-        .attr("r", 12)
-        .style("fill", "black")
-        .style("opacity", 1);
 
     var robotOneBody = robotOneGroupBody.append("rect")
         .attr("x", robotOneGroupStartX + 350)
@@ -224,35 +199,10 @@ function loadRobotOne() {
         .style("opacity", 1);
 
     var robotOneGroupLeftLeg = robotOneGroup.append("g");
-
-    var robotOneLeftLeg1 = robotOneGroupLeftLeg.append("circle")
-        .attr("cx", robotOneGroupStartX + 430)
-        .attr("cy", robotOneGroupStartY + 530)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotOneLeftLeg2 = robotOneGroupLeftLeg.append("circle")
-        .attr("cx", robotOneGroupStartX + 410)
-        .attr("cy", robotOneGroupStartY + 585)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotOneleftLeg3 = robotOneGroupLeftLeg.append("circle")
-        .attr("cx", robotOneGroupStartX + 410)
-        .attr("cy", robotOneGroupStartY + 640)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotOneLeftLegFoot = robotOneGroupLeftLeg.append("circle")
-        .attr("cx", robotOneGroupStartX + 410)
-        .attr("cy", robotOneGroupStartY + 715)
-        .attr("r", 50)
-        .style("fill", "#e69500")
-        .style("opacity", 1);
-
+    var robotOneLeftLeg1 = buildAndAppendCircleRobotOne(robotOneGroupLeftLeg, 430, 530, 30, "robotOneLeftLeg1", "999999", 1);
+    var robotOneLeftLeg2 = buildAndAppendCircleRobotOne(robotOneGroupLeftLeg, 410, 585, 30, "robotOneLeftLeg2", "999999", 1);
+    var robotOneleftLeg3 = buildAndAppendCircleRobotOne(robotOneGroupLeftLeg, 410, 640, 30, "robotOneLeftLeg1", "999999", 1);
+    var robotOneLeftLegFoot = buildAndAppendCircleRobotOne(robotOneGroupLeftLeg, 410, 715, 50, "robotOneLeftLegFoot", "#e69500", 1);
     var robotOneLeftLegFootHide = robotOneGroupLeftLeg.append("rect")
         .attr("x", robotOneGroupStartX + 360)
         .attr("y", robotOneGroupStartY + 700)
@@ -262,35 +212,10 @@ function loadRobotOne() {
         .style("opacity", 1);
 
     var robotOneGroupRightLeg = robotOneGroup.append("g");
-
-    var robotOneRightLeg1 = robotOneGroupRightLeg.append("circle")
-        .attr("cx", robotOneGroupStartX + 570)
-        .attr("cy", robotOneGroupStartY + 530)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotOneRightLeg2 = robotOneGroupRightLeg.append("circle")
-        .attr("cx", robotOneGroupStartX + 590)
-        .attr("cy", robotOneGroupStartY + 585)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotOneRightLeg3 = robotOneGroupRightLeg.append("circle")
-        .attr("cx", robotOneGroupStartX + 590)
-        .attr("cy", robotOneGroupStartY + 640)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotOneRightLegFoot = robotOneGroupRightLeg.append("circle")
-        .attr("cx", robotOneGroupStartX + 590)
-        .attr("cy", robotOneGroupStartY + 715)
-        .attr("r", 50)
-        .style("fill", "#e69500")
-        .style("opacity", 1);
-
+    var robotOneRightLeg1 = buildAndAppendCircleRobotOne(robotOneGroupRightLeg, 570, 530, 30, "robotOneRightLeg1", "999999", 1);
+    var robotOneRightLeg2 = buildAndAppendCircleRobotOne(robotOneGroupRightLeg, 590, 585, 30, "robotOneRightLeg2", "999999", 1);
+    var robotOneRightLeg3 = buildAndAppendCircleRobotOne(robotOneGroupRightLeg, 590, 640, 30, "robotOneRightLeg3", "999999", 1);
+    var robotOneRightLegFoot = buildAndAppendCircleRobotOne(robotOneGroupRightLeg, 590, 715, 50, "robotOneRightLegFoot", "#e69500", 1);
     var robotOneRightLegFootHide = robotOneGroupRightLeg.append("rect")
         .attr("x", robotOneGroupStartX + 540)
         .attr("y", robotOneGroupStartY + 700)
@@ -300,76 +225,53 @@ function loadRobotOne() {
         .style("opacity", 1);
 
     var robotOneGroupLeftArm = robotOneGroup.append("g");
+    var robotOneLeftArm1 = buildAndAppendCircleRobotOne(robotOneGroupLeftArm, 320, 340, 30, "robotOneLeftArm1", "#999999", 1);
+    var robotOneLeftArm2 = buildAndAppendCircleRobotOne(robotOneGroupLeftArm, 290, 390, 30, "robotOneLeftArm2", "#999999", 1);
+    var robotOneleftArm3 = buildAndAppendCircleRobotOne(robotOneGroupLeftArm, 253, 435, 30, "robotOneleftArm3", "#999999", 1);
+    var robotOneLeftArmHand = buildAndAppendCircleRobotOne(robotOneGroupLeftArm, 207, 478, 35, "robotOneLeftArmHand", "#e69500", 1);
+    var robotOneLeftArmHandHide = buildAndAppendCircleRobotOne(robotOneGroupLeftArm, 190, 488, 30, "robotOneLeftArmHandHide", "white", 1);
 
-    var robotOneLeftArm1 = robotOneGroupLeftArm.append("circle")
-        .attr("cx", robotOneGroupStartX + 320)
-        .attr("cy", robotOneGroupStartY + 340)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotOneLeftArm2 = robotOneGroupLeftArm.append("circle")
-        .attr("cx", robotOneGroupStartX + 290)
-        .attr("cy", robotOneGroupStartY + 390)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotOneleftArm3 = robotOneGroupLeftArm.append("circle")
-        .attr("cx", robotOneGroupStartX + 253)
-        .attr("cy", robotOneGroupStartY + 435)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotOneLeftArmHand = robotOneGroupLeftArm.append("circle")
-        .attr("cx", robotOneGroupStartX + 207)
-        .attr("cy", robotOneGroupStartY + 478)
-        .attr("r", 35)
-        .style("fill", "#e69500")
-        .style("opacity", 1);
-
-    var robotOneLeftArmHandHide = robotOneGroupLeftArm.append("circle")
-        .attr("cx", robotOneGroupStartX + 190)
-        .attr("cy", robotOneGroupStartY + 488)
-        .attr("r", 30)
-        .style("fill", "white")
-        .style("opacity", 1);
 
     var robotOneGroupRightArm = robotOneGroup.append("g");
 
-    var robotOneRightArm1 = robotOneGroupRightArm.append("circle")
-        .attr("cx", robotOneGroupStartX + 680)
-        .attr("cy", robotOneGroupStartY + 340)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
+    // var robotOneRightArm1 = robotOneGroupRightArm.append("circle")
+    //     .attr("cx", robotOneGroupStartX + 680)
+    //     .attr("cy", robotOneGroupStartY + 340)
+    //     .attr("r", 30)
+    //     .style("fill", "#999999")
+    //     .style("opacity", 1);
+    var robotOneRightArm1 = buildAndAppendCircleRobotOne(robotOneGroupRightArm, 680, 340, 30, "robotOneRightArm1", "#999999", 1);
 
-    var robotOneRightArm2 = robotOneGroupRightArm.append("circle")
-        .attr("cx", robotOneGroupStartX + 735)
-        .attr("cy", robotOneGroupStartY + 357)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
+    // var robotOneRightArm2 = robotOneGroupRightArm.append("circle")
+    //     .attr("cx", robotOneGroupStartX + 735)
+    //     .attr("cy", robotOneGroupStartY + 357)
+    //     .attr("r", 30)
+    //     .style("fill", "#999999")
+    //     .style("opacity", 1);
+    var robotOneRightArm2 = buildAndAppendCircleRobotOne(robotOneGroupRightArm, 735, 357, 30, "robotOneRightArm2", "#999999", 1);
 
-    var robotOneRightArm3 = robotOneGroupRightArm.append("circle")
-        .attr("cx", robotOneGroupStartX + 790)
-        .attr("cy", robotOneGroupStartY + 374)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
+    // var robotOneRightArm3 = robotOneGroupRightArm.append("circle")
+    //     .attr("cx", robotOneGroupStartX + 790)
+    //     .attr("cy", robotOneGroupStartY + 374)
+    //     .attr("r", 30)
+    //     .style("fill", "#999999")
+    //     .style("opacity", 1);
+    var robotOneRightArm3 = buildAndAppendCircleRobotOne(robotOneGroupRightArm, 790, 374, 30, "robotOneRightArm3", "#999999", 1);
 
-    var robotOneRightArmHand = robotOneGroupRightArm.append("circle")
-        .attr("cx", robotOneGroupStartX + 848)
-        .attr("cy", robotOneGroupStartY + 400)
-        .attr("r", 35)
-        .style("fill", "#e69500")
-        .style("opacity", 1);
+    //var robotOneRightArmHand = robotOneGroupRightArm.append("circle")
+        // .attr("cx", robotOneGroupStartX + 848)
+        // .attr("cy", robotOneGroupStartY + 400)
+        // .attr("r", 35)
+        // .style("fill", "#e69500")
+        // .style("opacity", 1);
+    var robotOneRightArmHand = buildAndAppendCircleRobotOne(robotOneGroupRightArm, 848, 400, 35, "robotOneRightArmHand", "#e69500", 1);
 
-    var robotOneRightArmHandHide = robotOneGroupRightArm.append("circle")
-        .attr("cx", robotOneGroupStartX + 863)
-        .attr("cy", robotOneGroupStartY + 406)
-        .attr("r", 30)
-        .style("fill", "white")
-        .style("opacity", 1);
+    // var robotOneRightArmHandHide = robotOneGroupRightArm.append("circle")
+    //     .attr("cx", robotOneGroupStartX + 863)
+    //     .attr("cy", robotOneGroupStartY + 406)
+    //     .attr("r", 30)
+    //     .style("fill", "white")
+    //     .style("opacity", 1);
+    var robotOneRightArmHandHide = buildAndAppendCircleRobotOne(robotOneGroupRightArm, 863, 406, 30, "robotOneRightArmHandHide", "white", 1);
+
 }
