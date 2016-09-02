@@ -37,11 +37,34 @@ var buildLineData = function(x1, y1, x2, y2) {
 * @param {String} circle opacity
 */
 var buildAndAppendCircle = function(addToElement, cx, cy, radius, id, fillColor, opacity) {
-    addToElement.append("circle")
+    return addToElement.append("circle")
         .attr("cx", cx)
         .attr("cy", cy)
         .attr("r", radius)
         .attr("id", id)
         .style("fill", fillColor)
         .style("opacity", opacity);
+}
+
+/**
+* Builds rectangle element and adds to element passed in
+* @param {Element} addToElement element to add the rect to
+* @param {Integer} rect starting upper left corner x coordinate
+* @param {Integer} rect starting upper left corner y coordinate
+* @param {Integer} width of rect
+* @param {Integer} height of rect
+* @param {String} id for rect
+* @param {String} rect fill color
+* @param {String} rect opacity
+*/
+var buildAndAppendRect = function(addToElement, x, y, width, height, id, fillColor, opacity) {
+    console.log('id', id);
+    return addToElement.append("rect")
+    .attr("x", x)
+    .attr("y", y)
+    .attr("width", width)
+    .attr("height", height)
+    .attr("id", id)
+    .style("fill", fillColor)
+    .style("opacity", opacity);
 }
