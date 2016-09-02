@@ -95,7 +95,6 @@ var buildAndAppendPath = function(addToElement, data, stroke, strokeWidth, id, f
 * @return {Array} array of x y data point objects
 */
 var buildXYPointObjectArray = function(data) {
-    console.log('data', data);
     var xyObjects = [];
     for (var i = 0; i < data.length; i++) {
         xyObjects.push({
