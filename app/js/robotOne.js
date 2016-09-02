@@ -71,7 +71,7 @@ function loadRobotOne() {
             ])
         }
         return buildXYPointObjectArray(xy);
-    }    
+    }
 
     var leftAntena = buildAndAppendPath(robotOneGroupHead, buildLineDataRobotOne(440, 170, 415, 130), "#999999", 6, "leftAntenaGraph", "");
     var leftAntenaCircle = buildAndAppendCircleRobotOne(robotOneGroupHead, 415, 130, 12, "leftAntenaCircle", "#e69500", 1);
@@ -88,7 +88,7 @@ function loadRobotOne() {
     var robotOneRightAntenaBoltLineGraph2 = buildAndAppendPath(robotOneGroupHead, rightAntenaBoltData2, "white", 3, "robotOneRightAntenaBoltLineGraph2", "none");
 
     var robotOneHead = buildAndAppendCircleRobotOne(robotOneGroupHead, 500, 285, 135, "robotOneHead", "#cce6ff", 1);
-    var robotOneHeadHide = buildAndAppendRectRobotOne(robotOneGroupHead, 365, 270, 269, 30, "robotOneHeadHide", "robotOneHeadHide", "white", 1);
+    var robotOneHeadHide = buildAndAppendRectRobotOne(robotOneGroupHead, 365, 270, 269, 30, "robotOneHeadHide", "", 1);
 
     var robotOneSpeaker = buildAndAppendRectRobotOne(robotOneGroupHead, 365, 270, 269, 30, "robotOneSpeaker", "yellow", 1);
 

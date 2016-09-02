@@ -91,7 +91,7 @@ function loadRobotThree() {
     var robotThreeRightAntenaBoltLineGraph2 = buildAndAppendPath(robotThreeGroupHead, rightAntenaBoltData2, "white", 3, "robotThreeRightAntenaBoltLineGraph2", "none");
 
     var robotThreeHead = buildAndAppendCircleRobotThree(robotThreeGroupHead, 500, 285, 135, "robotThreeHead", "#ccffe5", 1);
-    var robotThreeHeadHide = buildAndAppendRectRobotThree(robotThreeGroupHead, 366, 271, 268, 28, "robotThreeHeadHide", "robotThreeHeadHide", "white", 1);
+    var robotThreeHeadHide = buildAndAppendRectRobotThree(robotThreeGroupHead, 366, 271, 268, 28, "robotThreeHeadHide", "", 1);
 
     var robotThreeSpeaker = buildAndAppendRectRobotThree(robotThreeGroupHead, 365, 269, 270, 32, "robotThreeSpeaker", "yellow", 1);
 
@@ -102,142 +102,32 @@ function loadRobotThree() {
 
     var robotThreeBody = buildAndAppendRectRobotThree(robotThreeGroupBody, 350, 300, 300, 200, "robotThreeBody", "#ccffe5", 1);
 
-
     var robotThreeGroupLeftArm = robotThreeGroupBody.append("g");
-
-    var robotThreeLeftArm1 = robotThreeGroupLeftArm.append("circle")
-        .attr("cx", robotThreeGroupStartX + 320)
-        .attr("cy", robotThreeGroupStartY + 340)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotThreeLeftArm2 = robotThreeGroupLeftArm.append("circle")
-        .attr("cx", robotThreeGroupStartX + 270)
-        .attr("cy", robotThreeGroupStartY + 360)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotThreeleftArm3 = robotThreeGroupLeftArm.append("circle")
-        .attr("cx", robotThreeGroupStartX + 280)
-        .attr("cy", robotThreeGroupStartY + 380)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotThreeLeftArmHand = robotThreeGroupLeftArm.append("circle")
-        .attr("cx", robotThreeGroupStartX + 290)
-        .attr("cy", robotThreeGroupStartY + 400)
-        .attr("r", 35)
-        .style("fill", "#e69500")
-        .style("opacity", 1);
-
-    var robotThreeLeftArmHandHide = robotThreeGroupLeftArm.append("circle")
-        .attr("cx", robotThreeGroupStartX + 310)
-        .attr("cy", robotThreeGroupStartY + 400)
-        .attr("r", 30)
-        .style("fill", "white")
-        .style("opacity", 1);
-
-    var leftDrumStickGraph = robotThreeGroupDrumKit.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(280, 390, 430, 369)))
-        .attr("stroke", "#f2ca7f")
-        .attr("stroke-width", 8)
-        .attr("id", "leftDrumStick")
-        .attr("fill", "none");
+    var robotThreeLeftArm1 = buildAndAppendCircleRobotThree(robotThreeGroupLeftArm, 320, 340, 30, "robotThreeLeftArm1", "#999999", 1);
+    var robotThreeLeftArm2 = buildAndAppendCircleRobotThree(robotThreeGroupLeftArm, 270, 360, 30, "robotThreeLeftArm2", "#999999", 1);
+    var robotThreeleftArm3 = buildAndAppendCircleRobotThree(robotThreeGroupLeftArm, 280, 380, 30, "robotThreeleftArm3", "#999999", 1);
+    var robotThreeLeftArmHand = buildAndAppendCircleRobotThree(robotThreeGroupLeftArm, 290, 400, 35, "robotThreeLeftArmHand", "#e69500", 1);
+    var robotThreeLeftArmHandHide = buildAndAppendCircleRobotThree(robotThreeGroupLeftArm, 310, 400, 30, "robotThreeLeftArmHandHide", "white", 1);
+    var leftDrumStickGraph = buildAndAppendPath(robotThreeGroupDrumKit, buildLineDataRobotThree(280, 390, 430, 369), "#f2ca7f", 8, "leftDrumStick", "none");
 
     var robotThreeGroupRightArm = robotThreeGroupBody.append("g");
+    var robotThreeRightArm1 = buildAndAppendCircleRobotThree(robotThreeGroupRightArm, 680, 340, 30, "robotThreeRightArm1", "#999999", 1);
+    var robotThreeRightArm2 = buildAndAppendCircleRobotThree(robotThreeGroupRightArm, 670, 400, 30, "robotThreeRightArm2", "#999999", 1);
+    var robotThreeRightArm3 = buildAndAppendCircleRobotThree(robotThreeGroupRightArm, 620, 420, 30, "robotThreeRightArm3", "#999999", 1);
+    var robotThreeRightArmHand = buildAndAppendCircleRobotThree(robotThreeGroupRightArm, 560, 420, 35, "robotThreeRightArmHand", "#e69500", 1);
+    var robotThreeRightArmHandHide = buildAndAppendCircleRobotThree(robotThreeGroupRightArm, 545, 425, 30, "robotThreeRightArmHandHide", "#ccffe5", 1);
+    var rightDrumStick = buildAndAppendPath(robotThreeGroupDrumKit, buildLineDataRobotThree(575, 425, 410, 340), "#f2ca7f", 8, "rightDrumStick", "none");
 
-    var robotThreeRightArm1 = robotThreeGroupRightArm.append("circle")
-        .attr("cx", robotThreeGroupStartX + 680)
-        .attr("cy", robotThreeGroupStartY + 340)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
+    var robotThreeGroupDrumKitSnare = buildAndAppendRectRobotThree(robotThreeGroupDrumKit, 300, 340, 250, 100, "robotThreeGroupDrumKitSnare", "#ccc", 1);
+    robotThreeGroupDrumKitSnare.attr("stroke", "black").attr("stroke-width", 2).attr("transform", "rotate(10)");
 
-    var robotThreeRightArm2 = robotThreeGroupRightArm.append("circle")
-        .attr("cx", robotThreeGroupStartX + 670)
-        .attr("cy", robotThreeGroupStartY + 400)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
+    var snareStand = buildAndAppendPath(robotThreeGroupDrumKit, buildLineDataRobotThree(335, 518, 335, 720), "black", 3, "snareStand", "none");
+    var snareStandLeftLeg = buildAndAppendPath(robotThreeGroupDrumKit, buildLineDataRobotThree(335, 720, 280, 760), "black", 3, "snareStandLeftLeg", "none");
+    var snareStandRightLeg = buildAndAppendPath(robotThreeGroupDrumKit, buildLineDataRobotThree(335, 720, 390, 760), "black", 3, "snareStandRightLeg", "none");
 
-    var robotThreeRightArm3 = robotThreeGroupRightArm.append("circle")
-        .attr("cx", robotThreeGroupStartX + 620)
-        .attr("cy", robotThreeGroupStartY + 420)
-        .attr("r", 30)
-        .style("fill", "#999999")
-        .style("opacity", 1);
-
-    var robotThreeRightArmHand = robotThreeGroupRightArm.append("circle")
-        .attr("cx", robotThreeGroupStartX + 560)
-        .attr("cy", robotThreeGroupStartY + 420)
-        .attr("r", 35)
-        .style("fill", "#e69500")
-        .style("opacity", 1);
-
-    var robotThreeRightArmHandHide = robotThreeGroupRightArm.append("circle")
-        .attr("cx", robotThreeGroupStartX + 545)
-        .attr("cy", robotThreeGroupStartY + 425)
-        .attr("r", 30)
-        .style("fill", "#ccffe5")
-        .style("opacity", 1);
-
-    var rightDrumStickGraph = robotThreeGroupDrumKit.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(575, 425, 410, 340)))
-        .attr("stroke", "#f2ca7f")
-        .attr("stroke-width", 8)
-        .attr("id", "rightDrumStick")
-        .attr("fill", "none");
-
-    var robotThreeGroupDrumKitSnare = robotThreeGroupDrumKit.append("rect")
-        .attr("x", robotThreeGroupStartX + 300)
-        .attr("y", robotThreeGroupStartY + 340)
-        .attr("width", 250)
-        .attr("height", 100)
-        .attr("stroke", "black")
-        .attr("fill", "grey")
-        .attr("stroke-width", 2)
-        .attr("transform", "rotate(10)")
-        .attr("fill", "silver");
-
-    var snareStandGraph = robotThreeGroupDrumKit.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(335, 518, 335, 720)))
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
-        .attr("fill", "none");
-
-    var snareStandLeftLegGraph = robotThreeGroupDrumKit.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(335, 720, 280, 760)))
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
-        .attr("fill", "none");
-
-    var snareStandRightLegGraph = robotThreeGroupDrumKit.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(335, 720, 390, 760)))
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
-        .attr("fill", "none");
-
-    var cymbalStandGraph = robotThreeGroupDrumKit.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(685, 338, 685, 720)))
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
-        .attr("fill", "none");
-
-    var cymbalStandLeftLegGraph = robotThreeGroupDrumKit.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(685, 720, 630, 760)))
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
-        .attr("fill", "none");
-
-    var cymbalStandRightLegGraph = robotThreeGroupDrumKit.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(685, 720, 740, 760)))
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
-        .attr("fill", "none");
-
+    var cymbalStand = buildAndAppendPath(robotThreeGroupDrumKit, buildLineDataRobotThree(685, 338, 685, 720), "black", 3, "cymbalStand", "none");
+    var cymbalStandLeftLeg = buildAndAppendPath(robotThreeGroupDrumKit, buildLineDataRobotThree(685, 720, 630, 760), "black", 3, "cymbalStandLeftLeg", "none");
+    var cymbalStandRightLeg = buildAndAppendPath(robotThreeGroupDrumKit, buildLineDataRobotThree(685, 720, 740, 760), "black", 3, "cymbalStandRightLeg", "none");
     var cymbal = robotThreeGroupDrumKit.append("ellipse")
        .attr("cx", 655)
        .attr("cy", 510)
@@ -247,27 +137,11 @@ function loadRobotThree() {
        .attr("transform", "rotate(-10)")
        .style("fill", "gold");
 
-    var kickStandLeftLegGraph = robotThreeGroupDrumKit.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(445, 720, 400, 760)))
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
-        .attr("fill", "none");
+    var kickStandLeftLeg = buildAndAppendPath(robotThreeGroupDrumKit, buildLineDataRobotThree(445, 720, 400, 760), "black", 3, "kickStandLeftLeg", "none");
+    var kickStandRightLeg = buildAndAppendPath(robotThreeGroupDrumKit, buildLineDataRobotThree(555, 720, 600, 760), "black", 3, "kickStandRightLeg", "none");
 
-    var kickStandRightLegGraph = robotThreeGroupDrumKit.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotThree(555, 720, 600, 760)))
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
-        .attr("fill", "none");
-
-    var robotThreeGroupDrumKitKick = robotThreeGroupDrumKit.append("circle")
-        .attr("cx", robotThreeGroupStartX + 500)
-        .attr("cy", robotThreeGroupStartY + 600)
-        .attr("r", 160)
-        .attr("id", "kickDrum")
-        .attr("stroke", "black")
-        .attr("fill", "grey")
-        .attr("stroke-width", 2)
-        .attr("fill", "#ccc");
+    var robotThreeGroupDrumKitKick = buildAndAppendCircleRobotThree(robotThreeGroupDrumKit, 500, 600, 160, "robotThreeGroupDrumKitKick", "#ccc", 1);
+    robotThreeGroupDrumKitKick.attr("stroke", "black").attr("stroke-width", 2);
 
     var robotThreeGroupDrumKitKickTextJokeBot = robotThreeGroupDrumKit.append("text").text("JokeBot")
 			.attr("x", robotThreeGroupStartX + 265)
