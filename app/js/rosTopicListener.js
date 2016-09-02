@@ -1,7 +1,7 @@
 const INTRO = 'INTRO';
 const TELL_JOKE = 'TELL_JOKE';
 // https://bl.ocks.org/mbostock/5872848
-var dispatch = d3.dispatch("speak", "speakRepeat");
+var dispatch = d3.dispatch("speak", "speakRepeat", "drummer");
 
 
 var startJoke = function(duration) {
@@ -31,6 +31,9 @@ var startPunchLine = function(duration) {
 }
 
 var rimShot = function() {
+    dispatch.drummer({
+        "test": "this is a test"
+    });
     document.getElementById("rimShot").play();
 }
 

@@ -77,4 +77,65 @@ function speakVisual(delay, opacity, mouthColor, boltColor, robot) {
     d3.select("#" + robot + "RightAntenaBoltLineGraph2").transition()
         .delay(delay)
         .attr("stroke", boltColor);
+    //
+    // d3.select("#robotThreeGroup").transition()
+    //     .duration(500)
+    //     .attr("transform", "scale(.3)translate(400, 0)")
+    //     .ease("linear");
+
 }
+
+
+dispatch.on("drummer.drummerListener", function(d) {
+    console.log('text:', d.test)
+    d3.select("#cymbal").transition()
+        .attr("cx", 655)
+        .attr("cy", 510)
+        .attr("rx", 160 )
+        .attr("ry", 30 )
+        .attr("transform", "rotate(-10)");
+
+
+    var rightDrumStickShiftData = [{
+        "x": 50 + 575,
+        "y": 25 + 425
+    }, {
+        "x": 50 + 410,
+        "y": 25 + 440
+    }];
+
+    var rightDrumStickShiftFunction = d3.svg.line()
+        .x(function(d) {
+            return d.x;
+        })
+        .y(function(d) {
+            return d.y;
+        })
+        .interpolate("linear");
+
+    d3.select("#rightDrumStick").transition()
+        .attr("d", rightDrumStickShiftFunction(rightDrumStickShiftData))
+        .delay(100)
+        .duration(50)
+
+    var leftDrumStickShiftData = [{
+        "x": 50 + 280,
+        "y": 25 + 390
+    }, {
+        "x": 50 + 430,
+        "y": 25 + 430
+    }];
+
+    var leftDrumStickShiftFunction = d3.svg.line()
+        .x(function(d) {
+            return d.x;
+        })
+        .y(function(d) {
+            return d.y;
+        })
+        .interpolate("linear");
+
+    d3.select("#leftDrumStick").transition()
+        .attr("d", leftDrumStickShiftFunction(leftDrumStickShiftData))
+        .duration(150)
+});
