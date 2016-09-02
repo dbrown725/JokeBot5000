@@ -1,3 +1,5 @@
+//Utilities for building elements
+
 // The accessor functions which the path generator uses to produce path data
 var lineDataAccessor = d3.svg.line()
     .x(function(d) {

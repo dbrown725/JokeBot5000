@@ -88,19 +88,19 @@ function speakVisual(delay, opacity, mouthColor, boltColor, robot) {
 
 dispatch.on("drummer.drummerListener", function(d) {
     d3.select("#cymbal").transition()
-        .attr("cx", 655)
-        .attr("cy", 510)
+        .attr("cx", 600)
+        .attr("cy", 480)
         .attr("rx", 160 )
         .attr("ry", 30 )
         .attr("transform", "rotate(-10)");
 
 
     var rightDrumStickShiftData = [{
-        "x": 50 + 575,
-        "y": 25 + 425
+        "x": 575,
+        "y": 425
     }, {
-        "x": 50 + 410,
-        "y": 25 + 440
+        "x": 410,
+        "y": 440
     }];
 
     d3.select("#rightDrumStick").transition()
@@ -109,11 +109,11 @@ dispatch.on("drummer.drummerListener", function(d) {
         .duration(50)
 
     var leftDrumStickShiftData = [{
-        "x": 50 + 280,
-        "y": 25 + 390
+        "x": 280,
+        "y": 390
     }, {
-        "x": 50 + 430,
-        "y": 25 + 430
+        "x": 430,
+        "y": 430
     }];
 
     d3.select("#leftDrumStick").transition()
