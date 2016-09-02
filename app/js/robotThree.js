@@ -179,7 +179,6 @@ function loadRobotThree() {
         .style("fill", "White")
         .style("opacity", 1);
 
-
     var robotThreeHeadSpeak = robotThreeGroupHead.append("rect")
         .attr("x", robotThreeGroupStartX + 365)
         .attr("y", robotThreeGroupStartY + 270)
@@ -262,15 +261,6 @@ function loadRobotThree() {
         .style("fill", "white")
         .style("opacity", 1);
 
-
-    // var leftDrumStickData = [{
-    //     "x": robotThreeGroupStartX + 280,
-    //     "y": robotThreeGroupStartY + 390
-    // }, {
-    //     "x": robotThreeGroupStartX + 430,
-    //     "y": robotThreeGroupStartY + 360
-    // }];
-
     var leftDrumStickGraph = robotThreeGroupDrumKit.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotThree(280, 390, 430, 369)))
         .attr("stroke", "#f2ca7f")
@@ -315,14 +305,6 @@ function loadRobotThree() {
         .style("fill", "#ccffe5")
         .style("opacity", 1);
 
-    // var rightDrumStickData = [{
-    //     "x": robotThreeGroupStartX + 575,
-    //     "y": robotThreeGroupStartY + 425
-    // }, {
-    //     "x": robotThreeGroupStartX + 410,
-    //     "y": robotThreeGroupStartY + 340
-    // }];
-
     var rightDrumStickGraph = robotThreeGroupDrumKit.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotThree(575, 425, 410, 340)))
         .attr("stroke", "#f2ca7f")
@@ -340,14 +322,6 @@ function loadRobotThree() {
         .attr("stroke-width", 2)
         .attr("transform", "rotate(10)")
         .attr("fill", "silver");
-    //
-    // var snareStandData = [{
-    //     "x": robotThreeGroupStartX + 335,
-    //     "y": robotThreeGroupStartY + 518
-    // }, {
-    //     "x": robotThreeGroupStartX + 335,
-    //     "y": robotThreeGroupStartY + 720
-    // }];
 
     var snareStandGraph = robotThreeGroupDrumKit.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotThree(335, 518, 335, 720)))
@@ -355,27 +329,11 @@ function loadRobotThree() {
         .attr("stroke-width", 3)
         .attr("fill", "none");
 
-    // var snareStandLeftLegData = [{
-    //     "x": robotThreeGroupStartX + 335,
-    //     "y": robotThreeGroupStartY + 720
-    // }, {
-    //     "x": robotThreeGroupStartX + 280,
-    //     "y": robotThreeGroupStartY + 760
-    // }];
-
     var snareStandLeftLegGraph = robotThreeGroupDrumKit.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotThree(335, 720, 280, 760)))
         .attr("stroke", "black")
         .attr("stroke-width", 3)
         .attr("fill", "none");
-
-    // var snareStandRightLegData = [{
-    //     "x": robotThreeGroupStartX + 335,
-    //     "y": robotThreeGroupStartY + 720
-    // }, {
-    //     "x": robotThreeGroupStartX + 390,
-    //     "y": robotThreeGroupStartY + 760
-    // }];
 
     var snareStandRightLegGraph = robotThreeGroupDrumKit.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotThree(335, 720, 390, 760)))
@@ -383,41 +341,17 @@ function loadRobotThree() {
         .attr("stroke-width", 3)
         .attr("fill", "none");
 
-    // var cymbalStandData = [{
-    //     "x": robotThreeGroupStartX + 685,
-    //     "y": robotThreeGroupStartY + 338
-    // }, {
-    //     "x": robotThreeGroupStartX + 685,
-    //     "y": robotThreeGroupStartY + 720
-    // }];
-
     var cymbalStandGraph = robotThreeGroupDrumKit.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotThree(685, 338, 685, 720)))
         .attr("stroke", "black")
         .attr("stroke-width", 3)
         .attr("fill", "none");
 
-    // var cymbalStandLeftLegData = [{
-    //     "x": robotThreeGroupStartX + 685,
-    //     "y": robotThreeGroupStartY + 720
-    // }, {
-    //     "x": robotThreeGroupStartX + 630,
-    //     "y": robotThreeGroupStartY + 760
-    // }];
-
     var cymbalStandLeftLegGraph = robotThreeGroupDrumKit.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotThree(685, 720, 630, 760)))
         .attr("stroke", "black")
         .attr("stroke-width", 3)
         .attr("fill", "none");
-
-    // var cymbalStandRightLegData = [{
-    //     "x": robotThreeGroupStartX + 685,
-    //     "y": robotThreeGroupStartY + 720
-    // }, {
-    //     "x": robotThreeGroupStartX + 740,
-    //     "y": robotThreeGroupStartY + 760
-    // }];
 
     var cymbalStandRightLegGraph = robotThreeGroupDrumKit.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotThree(685, 720, 740, 760)))
@@ -434,28 +368,11 @@ function loadRobotThree() {
        .attr("transform", "rotate(-10)")
        .style("fill", "gold");
 
-    // var kickStandLeftLegData = [{
-    //     "x": robotThreeGroupStartX + 445,
-    //     "y": robotThreeGroupStartY + 720
-    // }, {
-    //     "x": robotThreeGroupStartX + 400,
-    //     "y": robotThreeGroupStartY + 760
-    // }];
-
     var kickStandLeftLegGraph = robotThreeGroupDrumKit.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotThree(445, 720, 400, 760)))
         .attr("stroke", "black")
         .attr("stroke-width", 3)
         .attr("fill", "none");
-
-
-    // var kickStandRightLegData = [{
-    //     "x": robotThreeGroupStartX + 555,
-    //     "y": robotThreeGroupStartY + 720
-    // }, {
-    //     "x": robotThreeGroupStartX + 600,
-    //     "y": robotThreeGroupStartY + 760
-    // }];
 
     var kickStandRightLegGraph = robotThreeGroupDrumKit.append("path")
         .attr("d", lineDataAccessor(buildLineDataRobotThree(555, 720, 600, 760)))
