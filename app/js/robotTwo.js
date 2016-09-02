@@ -7,54 +7,34 @@ function loadRobotTwo() {
 
     var robotTwoGroup = svgContainer.append("g");
 
+    var robotTwoGroupBody = robotTwoGroup.append("g");
+
+    var robotTwoGroupHead = robotTwoGroup.append("g").attr("id", "robotTwoGroupHead");
+
     var robotTwoGroupStartX = 1550;
 
     var robotTwoGroupStartY = 25;
 
-    var robotTwoGroupBody = robotTwoGroup.append("g");
-
-
-    var robotTwoGroupHead = robotTwoGroup.append("g").attr("id", "robotTwoGroupHead");
-
-    var leftAntenaData = [{
-        "x": robotTwoGroupStartX + 440,
-        "y": robotTwoGroupStartY + 170
-    }, {
-        "x": robotTwoGroupStartX + 415,
-        "y": robotTwoGroupStartY + 130
-    }];
-
-    var leftAntenaFunction = d3.svg.line()
-        .x(function(d) {
-            return d.x;
-        })
-        .y(function(d) {
-            return d.y;
-        })
-        .interpolate("linear");
+    /**
+    * For robot two builds Array containing params x/y line coordinates
+    * @param {String} x coordinate for starting point of line
+    * @param {String} y coordinate for starting point of line
+    * @param {String} x coordinate for ending point of line
+    * @param {String} y coordinate for ending point of line
+    * @return {Array} point to point line coordinates
+    */
+    var buildLineDataRobotTwo = function(x1, y1, x2, y2) {
+        return buildLineData(robotTwoGroupStartX + x1,
+            robotTwoGroupStartY + y1,
+            robotTwoGroupStartX + x2,
+            robotTwoGroupStartY + y2);
+    }
 
     var leftAntenaGraph = robotTwoGroupHead.append("path")
-        .attr("d", leftAntenaFunction(leftAntenaData))
+        .attr("d", lineDataAccessor(buildLineDataRobotTwo(440, 170, 415, 130)))
         .attr("stroke", "#999999")
         .attr("stroke-width", 6)
         .attr("fill", "none");
-
-    var rightAntenaData = [{
-        "x": robotTwoGroupStartX + 560,
-        "y": robotTwoGroupStartY + 170
-    }, {
-        "x": robotTwoGroupStartX + 585,
-        "y": robotTwoGroupStartY + 130
-    }];
-
-    var rightAntenaFunction = d3.svg.line()
-        .x(function(d) {
-            return d.x;
-        })
-        .y(function(d) {
-            return d.y;
-        })
-        .interpolate("linear");
 
     var leftAntenaCircle = robotTwoGroupHead.append("circle")
         .attr("cx", robotTwoGroupStartX + 415)
@@ -85,17 +65,8 @@ function loadRobotTwo() {
         "y": robotTwoGroupStartY + 150
     }];
 
-    var leftAntenaBoltFunction1 = d3.svg.line()
-        .x(function(d) {
-            return d.x;
-        })
-        .y(function(d) {
-            return d.y;
-        })
-        .interpolate("linear");
-
     var robotTwoLeftAntenaBoltLineGraph1 = d3.select("#robotTwoGroupHead").append("path")
-        .attr("d", leftAntenaBoltFunction1(leftAntenaBoltData1))
+        .attr("d", lineDataAccessor(leftAntenaBoltData1))
         .attr("stroke", "white")
         .attr("stroke-width", 3)
         .attr("fill", "none")
@@ -121,24 +92,15 @@ function loadRobotTwo() {
         "y": robotTwoGroupStartY + 45
     }];
 
-    var leftAntenaBoltFunction2 = d3.svg.line()
-        .x(function(d) {
-            return d.x;
-        })
-        .y(function(d) {
-            return d.y;
-        })
-        .interpolate("linear");
-
     var robotTwoLeftAntenaBoltLineGraph2 = d3.select("#robotTwoGroupHead").append("path")
-        .attr("d", leftAntenaBoltFunction2(leftAntenaBoltData2))
+        .attr("d", lineDataAccessor(leftAntenaBoltData2))
         .attr("stroke", "white")
         .attr("stroke-width", 3)
         .attr("fill", "none")
         .attr("id", "robotTwoLeftAntenaBoltLineGraph2");
 
     var rightAntenaGraph = robotTwoGroupHead.append("path")
-        .attr("d", rightAntenaFunction(rightAntenaData))
+        .attr("d", lineDataAccessor(buildLineDataRobotTwo(560, 170, 585, 130)))
         .attr("stroke", "#999999")
         .attr("stroke-width", 6)
         .attr("fill", "none");
@@ -170,17 +132,8 @@ function loadRobotTwo() {
         "y": robotTwoGroupStartY + 170
     }];
 
-    var rightAntenaBoltFunction1 = d3.svg.line()
-        .x(function(d) {
-            return d.x;
-        })
-        .y(function(d) {
-            return d.y;
-        })
-        .interpolate("linear");
-
     var robotTwoRightAntenaBoltLineGraph1 = d3.select("#robotTwoGroupHead").append("path")
-        .attr("d", rightAntenaBoltFunction1(rightAntenaBoltData1))
+        .attr("d", lineDataAccessor(rightAntenaBoltData1))
         .attr("stroke", "white")
         .attr("stroke-width", 3)
         .attr("fill", "none")
@@ -206,17 +159,8 @@ function loadRobotTwo() {
         "y": robotTwoGroupStartY + 15
     }];
 
-    var rightAntenaBoltFunction2 = d3.svg.line()
-        .x(function(d) {
-            return d.x;
-        })
-        .y(function(d) {
-            return d.y;
-        })
-        .interpolate("linear");
-
     var robotTwoRightAntenaBoltLineGraph2 = d3.select("#robotTwoGroupHead").append("path")
-        .attr("d", rightAntenaBoltFunction2(rightAntenaBoltData2))
+        .attr("d", lineDataAccessor(rightAntenaBoltData2))
         .attr("stroke", "white")
         .attr("stroke-width", 3)
         .attr("fill", "none")
