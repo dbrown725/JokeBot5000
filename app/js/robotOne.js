@@ -8,15 +8,14 @@ function loadRobotOne() {
     var robotOneGroupHead = robotOneGroup.append("g").attr("id", "robotOneGroupHead");
 
     var robotOneGroupStartX = 150;
-
     var robotOneGroupStartY = 75;
 
     /**
     * For robot one builds Array containing params x/y line coordinates
-    * @param {String} x coordinate for starting point of line
-    * @param {String} y coordinate for starting point of line
-    * @param {String} x coordinate for ending point of line
-    * @param {String} y coordinate for ending point of line
+    * @param {Integer} x coordinate for starting point of line
+    * @param {Integer} y coordinate for starting point of line
+    * @param {Integer} x coordinate for ending point of line
+    * @param {Integer} y coordinate for ending point of line
     * @return {Array} point to point line coordinates
     */
     var buildLineDataRobotOne = function(x1, y1, x2, y2) {
@@ -34,7 +33,8 @@ function loadRobotOne() {
     * @param {Integer} radius of circle
     * @param {String} id for circle
     * @param {String} circle fill color
-    * @param {String} circle opacity
+    * @param {Integer} circle opacity
+    * @return {Element} circle
     */
     var buildAndAppendCircleRobotOne = function(addToElement, cx, cy, radius, id, fillColor, opacity) {
         return buildAndAppendCircle(addToElement, robotOneGroupStartX + cx, robotOneGroupStartY + cy, radius, id, fillColor, opacity);
@@ -49,138 +49,45 @@ function loadRobotOne() {
     * @param {Integer} height of rect
     * @param {String} id for rect
     * @param {String} rect fill color
-    * @param {String} rect opacity
+    * @param {Integer} rect opacity
+    * @return {Element} rectangle
     */
     var buildAndAppendRectRobotOne = function(addToElement, x, y, width, height, id, fillColor, opacity) {
         return buildAndAppendRect(addToElement, robotOneGroupStartX + x, robotOneGroupStartY + y, width, height, id, fillColor, opacity);
     }
 
-    var leftAntenaGraph = robotOneGroupHead.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotOne(440, 170, 415, 130)))
-        .attr("stroke", "#999999")
-        .attr("stroke-width", 6)
-        .attr("fill", "none");
+    /**
+    * Adds startX and startY values to xy array values
+    * and calls buildXYPointObjectArray
+    * @param {Array} array of xy arrays
+    * @return {Array} array of x y data point objects
+    */
+    var buildRobotOneXYPointArray = function(data) {
+        var xy = [];
+        for (var i = 0; i < data.length; i++) {
+            xy.push([
+                robotOneGroupStartX + data[i][0],
+                robotOneGroupStartY + data[i][1]
+            ])
+        }
+        return buildXYPointObjectArray(xy);
+    }    
 
+    var leftAntena = buildAndAppendPath(robotOneGroupHead, buildLineDataRobotOne(440, 170, 415, 130), "#999999", 6, "leftAntenaGraph", "");
     var leftAntenaCircle = buildAndAppendCircleRobotOne(robotOneGroupHead, 415, 130, 12, "leftAntenaCircle", "#e69500", 1);
+    var leftAntenaBoltData1 = buildRobotOneXYPointArray([[390, 130],[360,150],[340,130],[325,150],[315,130],[310,150]]);
+    var robotOneLeftAntenaBoltLineGraph1 = buildAndAppendPath(robotOneGroupHead, leftAntenaBoltData1, "white", 3, "robotOneLeftAntenaBoltLineGraph1", "none");
+    var leftAntenaBoltData2 = buildRobotOneXYPointArray([[420, 110],[435,95],[425,75],[440,60],[430,50],[445,45]]);
+    var robotOneLeftAntenaBoltLineGraph2 = buildAndAppendPath(robotOneGroupHead, leftAntenaBoltData2, "white", 3, "robotOneLeftAntenaBoltLineGraph2", "none");
 
-    var leftAntenaBoltData1 = [{
-        "x": robotOneGroupStartX + 390,
-        "y": robotOneGroupStartY + 130
-    }, {
-        "x": robotOneGroupStartX + 360,
-        "y": robotOneGroupStartY + 150
-    }, {
-        "x": robotOneGroupStartX + 340,
-        "y": robotOneGroupStartY + 130
-    }, {
-        "x": robotOneGroupStartX + 325,
-        "y": robotOneGroupStartY + 150
-    }, {
-        "x": robotOneGroupStartX + 315,
-        "y": robotOneGroupStartY + 130
-    }, {
-        "x": robotOneGroupStartX + 310,
-        "y": robotOneGroupStartY + 150
-    }];
-
-    var robotOneLeftAntenaBoltLineGraph1 = d3.select("#robotOneGroupHead").append("path")
-        .attr("d", lineDataAccessor(leftAntenaBoltData1))
-        .attr("stroke", "white")
-        .attr("stroke-width", 3)
-        .attr("fill", "none")
-        .attr("id", "robotOneLeftAntenaBoltLineGraph1");
-
-    var leftAntenaBoltData2 = [{
-        "x": robotOneGroupStartX + 420,
-        "y": robotOneGroupStartY + 110
-    }, {
-        "x": robotOneGroupStartX + 435,
-        "y": robotOneGroupStartY + 95
-    }, {
-        "x": robotOneGroupStartX + 425,
-        "y": robotOneGroupStartY + 75
-    }, {
-        "x": robotOneGroupStartX + 440,
-        "y": robotOneGroupStartY + 60
-    }, {
-        "x": robotOneGroupStartX + 430,
-        "y": robotOneGroupStartY + 50
-    }, {
-        "x": robotOneGroupStartX + 445,
-        "y": robotOneGroupStartY + 45
-    }];
-
-    var robotOneLeftAntenaBoltLineGraph2 = d3.select("#robotOneGroupHead").append("path")
-        .attr("d", lineDataAccessor(leftAntenaBoltData2))
-        .attr("stroke", "white")
-        .attr("stroke-width", 3)
-        .attr("fill", "none")
-        .attr("id", "robotOneLeftAntenaBoltLineGraph2");
-
-    var rightAntenaGraph = robotOneGroupHead.append("path")
-        .attr("d", lineDataAccessor(buildLineDataRobotOne(560, 170, 585, 130)))
-        .attr("stroke", "#999999")
-        .attr("stroke-width", 6)
-        .attr("fill", "none");
-
+    var rightAntena = buildAndAppendPath(robotOneGroupHead, buildLineDataRobotOne(560, 170, 585, 130), "#999999", 6, "rightAntenaGraph", "none");
     var rightAntenaCircle = buildAndAppendCircleRobotOne(robotOneGroupHead, 585, 130, 12, "rightAntenaCircle", "#e69500", 1);
-
-    var rightAntenaBoltData1 = [{
-        "x": robotOneGroupStartX + 610,
-        "y": robotOneGroupStartY + 130
-    }, {
-        "x": robotOneGroupStartX + 635,
-        "y": robotOneGroupStartY + 150
-    }, {
-        "x": robotOneGroupStartX + 660,
-        "y": robotOneGroupStartY + 140
-    }, {
-        "x": robotOneGroupStartX + 685,
-        "y": robotOneGroupStartY + 160
-    }, {
-        "x": robotOneGroupStartX + 710,
-        "y": robotOneGroupStartY + 150
-    }, {
-        "x": robotOneGroupStartX + 735,
-        "y": robotOneGroupStartY + 170
-    }];
-
-    var robotOneRightAntenaBoltLineGraph1 = d3.select("#robotOneGroupHead").append("path")
-        .attr("d", lineDataAccessor(rightAntenaBoltData1))
-        .attr("stroke", "white")
-        .attr("stroke-width", 3)
-        .attr("fill", "none")
-        .attr("id", "robotOneRightAntenaBoltLineGraph1");
-
-    var rightAntenaBoltData2 = [{
-        "x": robotOneGroupStartX + 585,
-        "y": robotOneGroupStartY + 100
-    }, {
-        "x": robotOneGroupStartX + 600,
-        "y": robotOneGroupStartY + 75
-    }, {
-        "x": robotOneGroupStartX + 580,
-        "y": robotOneGroupStartY + 55
-    }, {
-        "x": robotOneGroupStartX + 600,
-        "y": robotOneGroupStartY + 40
-    }, {
-        "x": robotOneGroupStartX + 580,
-        "y": robotOneGroupStartY + 30
-    }, {
-        "x": robotOneGroupStartX + 600,
-        "y": robotOneGroupStartY + 15
-    }];
-
-    var robotOneRightAntenaBoltLineGraph2 = d3.select("#robotOneGroupHead").append("path")
-        .attr("d", lineDataAccessor(rightAntenaBoltData2))
-        .attr("stroke", "white")
-        .attr("stroke-width", 3)
-        .attr("fill", "none")
-        .attr("id", "robotOneRightAntenaBoltLineGraph2");
+    var rightAntenaBoltData1 = buildRobotOneXYPointArray([[610, 130],[635,150],[660,140],[685,160],[710,150],[735,170]]);
+    var robotOneRightAntenaBoltLineGraph1 = buildAndAppendPath(robotOneGroupHead, rightAntenaBoltData1, "white", 3, "robotOneRightAntenaBoltLineGraph1", "none");
+    var rightAntenaBoltData2 = buildRobotOneXYPointArray([[585, 100],[600,75],[580,55],[600,40],[580,30],[600,15]]);
+    var robotOneRightAntenaBoltLineGraph2 = buildAndAppendPath(robotOneGroupHead, rightAntenaBoltData2, "white", 3, "robotOneRightAntenaBoltLineGraph2", "none");
 
     var robotOneHead = buildAndAppendCircleRobotOne(robotOneGroupHead, 500, 285, 135, "robotOneHead", "#cce6ff", 1);
-
     var robotOneHeadHide = buildAndAppendRectRobotOne(robotOneGroupHead, 365, 270, 269, 30, "robotOneHeadHide", "robotOneHeadHide", "white", 1);
 
     var robotOneSpeaker = buildAndAppendRectRobotOne(robotOneGroupHead, 365, 270, 269, 30, "robotOneSpeaker", "yellow", 1);
@@ -219,5 +126,4 @@ function loadRobotOne() {
     var robotOneRightArm3 = buildAndAppendCircleRobotOne(robotOneGroupRightArm, 790, 374, 30, "robotOneRightArm3", "#999999", 1);
     var robotOneRightArmHand = buildAndAppendCircleRobotOne(robotOneGroupRightArm, 848, 400, 35, "robotOneRightArmHand", "#e69500", 1);
     var robotOneRightArmHandHide = buildAndAppendCircleRobotOne(robotOneGroupRightArm, 863, 406, 30, "robotOneRightArmHandHide", "white", 1);
-
 }
