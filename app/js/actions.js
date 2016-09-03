@@ -1,21 +1,17 @@
 dispatch.on("speak.speachListener", function(d) {
     var opacity = 0;
     var delay = 150;
-    var mouthColor = "red";
+    var mouthColor = "white";
     var boltColor = "yellow"
     var robot = "robotOne";
+    console.log('d.duration', d.duration);
     for (i = 0; i < d.duration; i++) {
         speakVisual(delay, opacity, mouthColor, boltColor, robot);
         delay = delay + 150;
-        if (opacity === 0) {
-            opacity = 1;
-        } else {
-            opacity = 1;
-        }
-        if (mouthColor === "red") {
+        if (mouthColor === "white") {
             mouthColor = "yellow";
         } else {
-            mouthColor = "red";
+            mouthColor = "white";
         }
 
         if (boltColor === "white") {
@@ -29,22 +25,17 @@ dispatch.on("speak.speachListener", function(d) {
 dispatch.on("speakRepeat.speachRepeatListener", function(d) {
     var opacity = 0;
     var delay = 150;
-    var mouthColor = "red";
+    var mouthColor = "white";
     var boltColor = "yellow";
     var robot = "robotTwo";
 
     for (i = 0; i < d.duration; i++) {
         speakVisual(delay, opacity, mouthColor, boltColor, robot);
         delay = delay + 150;
-        if (opacity === 0) {
-            opacity = 1;
-        } else {
-            opacity = 1;
-        }
-        if (mouthColor === "red") {
+        if (mouthColor === "white") {
             mouthColor = "yellow";
         } else {
-            mouthColor = "red";
+            mouthColor = "white";
         }
 
         if (boltColor === "white") {
@@ -58,9 +49,7 @@ dispatch.on("speakRepeat.speachRepeatListener", function(d) {
 function speakVisual(delay, opacity, mouthColor, boltColor, robot) {
     d3.select("#" + robot + "Speaker").transition()
         .delay(delay)
-        .duration(500)
-        .style("opacity", opacity)
-        .attr("fill", mouthColor);
+        .attr("stroke", mouthColor);
 
     d3.select("#" + robot + "LeftAntenaBoltLineGraph1").transition()
         .delay(delay)

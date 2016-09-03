@@ -24,9 +24,8 @@ function loadRobotThree() {
     var robotThreeRightAntenaBoltLineGraph2 = buildAndAppendPath(robotThreeGroupHead, rightAntenaBoltData2, "white", 3, "robotThreeRightAntenaBoltLineGraph2", "none");
 
     var robotThreeHead = buildAndAppendCircle(robotThreeGroupHead, 500, 285, 135, "robotThreeHead", "#ccffe5", 1);
-    var robotThreeHeadHide = buildAndAppendRect(robotThreeGroupHead, 366, 271, 268, 28, "robotThreeHeadHide", "", 1);
-
-    var robotThreeSpeaker = buildAndAppendRect(robotThreeGroupHead, 365, 269, 270, 32, "robotThreeSpeaker", "yellow", 1);
+    var robotThreeHeadHide = buildAndAppendRect(robotThreeGroupHead, 366, 271, 268, 28, "robotThreeHeadHide", "white", 1);
+    var robotThreeSpeaker = buildAndAppendPath(robotThreeGroupHead, buildLineData(365, 285, 634, 285), "yellow", 30, "robotThreeSpeaker", "none");
 
     var robotThreeHeadLeftEye = buildAndAppendCircle(robotThreeGroupHead, 440, 215, 20, "robotThreeHeadLeftEye", "white", 1);
     var robotThreeHeadRightEye = buildAndAppendCircle(robotThreeGroupHead, 560, 215, 20, "robotThreeHeadRightEye", "white", 1);

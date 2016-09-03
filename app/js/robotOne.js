@@ -22,9 +22,8 @@ function loadRobotOne() {
     var robotOneRightAntenaBoltLineGraph2 = buildAndAppendPath(robotOneGroupHead, rightAntenaBoltData2, "white", 3, "robotOneRightAntenaBoltLineGraph2", "none");
 
     var robotOneHead = buildAndAppendCircle(robotOneGroupHead, 500, 285, 135, "robotOneHead", "#cce6ff", 1);
-    var robotOneHeadHide = buildAndAppendRect(robotOneGroupHead, 365, 270, 269, 30, "robotOneHeadHide", "", 1);
-
-    var robotOneSpeaker = buildAndAppendRect(robotOneGroupHead, 365, 270, 269, 30, "robotOneSpeaker", "yellow", 1);
+    var robotOneHeadHide = buildAndAppendRect(robotOneGroupHead, 365, 270, 269, 30, "robotOneHeadHide", "white", 1);
+    var robotOneSpeaker = buildAndAppendPath(robotOneGroupHead, buildLineData(365, 285, 634, 285), "yellow", 30, "robotOneSpeaker", "none");
 
     var robotOneHeadLeftEye = buildAndAppendCircle(robotOneGroupHead, 440, 215, 20, "robotOneHeadLeftEye", "white", 1);
     var robotOneHeadRightEye = buildAndAppendCircle(robotOneGroupHead, 560, 215, 20, "robotOneHeadRightEye", "white", 1);

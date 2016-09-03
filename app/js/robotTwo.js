@@ -22,9 +22,8 @@ function loadRobotTwo() {
     var robotTwoRightAntenaBoltLineGraph2 = buildAndAppendPath(robotTwoGroupHead, rightAntenaBoltData2, "white", 3, "robotTwoRightAntenaBoltLineGraph2", "none");
 
     var robotTwoHead = buildAndAppendCircle(robotTwoGroupHead, 500, 285, 135, "robotTwoHead", "#ffcce6", 1);
-    var robotTwoHeadHide = buildAndAppendRect(robotTwoGroupHead, 366, 271, 269, 28, "robotTwoHeadHide", "", 1);
-
-    var robotTwoSpeaker = buildAndAppendRect(robotTwoGroupHead, 365, 270, 271, 30, "robotTwoSpeaker", "yellow", 1);
+    var robotTwoHeadHide = buildAndAppendRect(robotTwoGroupHead, 366, 271, 269, 28, "robotTwoHeadHide", "white", 1);
+    var robotTwoSpeaker = buildAndAppendPath(robotTwoGroupHead, buildLineData(365, 285, 634, 285), "yellow", 30, "robotTwoSpeaker", "none");
 
     var robotTwoHeadLeftEye = buildAndAppendCircle(robotTwoGroupHead, 440, 215, 20, "robotTwoHeadLeftEye", "white", 1);
     var robotTwoHeadRightEye = buildAndAppendCircle(robotTwoGroupHead, 560, 215, 20, "robotTwoHeadRightEye", "white", 1);
