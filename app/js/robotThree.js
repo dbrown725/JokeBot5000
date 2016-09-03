@@ -40,9 +40,9 @@ function loadRobotThree() {
     var robotThreeleftArm3 = buildAndAppendCircle(robotThreeGroupLeftArm, 280, 380, 30, "robotThreeleftArm3", "#999999", 1);
     var robotThreeLeftArmHand = buildAndAppendCircle(robotThreeGroupLeftArm, 290, 400, 35, "robotThreeLeftArmHand", "#e69500", 1);
     var robotThreeLeftArmHandHide = buildAndAppendCircle(robotThreeGroupLeftArm, 310, 400, 30, "robotThreeLeftArmHandHide", "white", 1);
-    var leftDrumStickGraph = buildAndAppendPath(robotThreeGroupDrumKit, buildLineData(280, 390, 430, 369), "#f2ca7f", 8, "leftDrumStick", "none");
+    var leftDrumStick = buildAndAppendPath(robotThreeGroupDrumKit, buildLineData(280, 390, 430, 369), "#f2ca7f", 8, "leftDrumStick", "none");
 
-    var robotThreeGroupRightArm = robotThreeGroupBody.append("g");
+    var robotThreeGroupRightArm = robotThreeGroupBody.append("g").attr("id", 'robotThreeGroupRightArm');
     var robotThreeRightArm1 = buildAndAppendCircle(robotThreeGroupRightArm, 680, 340, 30, "robotThreeRightArm1", "#999999", 1);
     var robotThreeRightArm2 = buildAndAppendCircle(robotThreeGroupRightArm, 670, 400, 30, "robotThreeRightArm2", "#999999", 1);
     var robotThreeRightArm3 = buildAndAppendCircle(robotThreeGroupRightArm, 620, 420, 30, "robotThreeRightArm3", "#999999", 1);
@@ -57,12 +57,12 @@ function loadRobotThree() {
     var snareStandLeftLeg = buildAndAppendPath(robotThreeGroupDrumKit, buildLineData(335, 720, 280, 760), "black", 3, "snareStandLeftLeg", "none");
     var snareStandRightLeg = buildAndAppendPath(robotThreeGroupDrumKit, buildLineData(335, 720, 390, 760), "black", 3, "snareStandRightLeg", "none");
 
-    var cymbalStand = buildAndAppendPath(robotThreeGroupDrumKit, buildLineData(685, 338, 685, 720), "black", 3, "cymbalStand", "none");
+    var cymbalStand = buildAndAppendPath(robotThreeGroupDrumKit, buildLineData(685, 358, 685, 720), "black", 3, "cymbalStand", "none");
     var cymbalStandLeftLeg = buildAndAppendPath(robotThreeGroupDrumKit, buildLineData(685, 720, 630, 760), "black", 3, "cymbalStandLeftLeg", "none");
     var cymbalStandRightLeg = buildAndAppendPath(robotThreeGroupDrumKit, buildLineData(685, 720, 740, 760), "black", 3, "cymbalStandRightLeg", "none");
     var cymbal = robotThreeGroupDrumKit.append("ellipse")
-       .attr("cx", 600)
-       .attr("cy", 480)
+       .attr("cx", 610)
+       .attr("cy", 490)
        .attr("rx", 160 )
        .attr("ry", 30 )
        .attr("id", "cymbal")
