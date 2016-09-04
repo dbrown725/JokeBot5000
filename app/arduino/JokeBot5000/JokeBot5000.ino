@@ -51,7 +51,7 @@ void loop()
   // only use for debugging
   //Serial.println(distance);
   int intDist = (int)distance;
-  //Test
+  //Test Test
   //Serial.print("intDist");
   //Serial.println(intDist);
   //Serial.println(intDist < 100);
