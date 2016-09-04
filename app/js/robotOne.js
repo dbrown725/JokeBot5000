@@ -60,5 +60,8 @@ function loadRobotOne() {
     var robotOneRightArmHand = buildAndAppendCircle(robotOneGroupRightArm, 848, 400, 35, "robotOneRightArmHand", "#e69500", 1);
     var robotOneRightArmHandHide = buildAndAppendCircle(robotOneGroupRightArm, 863, 406, 30, "robotOneRightArmHandHide", "white", 1);
 
+    //eyeBlink("robotOne", 2000, "green");
+    //eyeBlink("robotOne", 4000, "green");
+
     robotOneGroup.attr("transform", "translate(150, 75)");
 }

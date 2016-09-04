@@ -169,3 +169,65 @@ var returnRightArm = function() {
         .delay(575)
         .duration(200);
 }
+
+var eyeBlink = function(robotName, headColor) {
+    var delay = 3000;
+    for (var i=0; i < 40; i++) {
+        eyeBlinkCycle(robotName, delay, headColor);
+        delay = delay + Math.floor((Math.random() * 20000));
+    }
+}
+
+var eyeBlinkCycle = function(robotName, delay, headColor) {
+    d3.select("#" + robotName + "GroupHead").append("path")
+        .attr("d", getUpperArc())
+        .attr("transform", "translate(560,265)")
+        .style("fill", headColor)
+        .transition().delay(delay).duration(250).attr("transform", "translate(560,282)")
+        .transition().delay(delay + 250).duration(250).attr("transform", "translate(560,265)");
+
+    d3.select("#" + robotName + "GroupHead").append("path")
+        .attr("d", getLowerArc())
+        .attr("transform", "translate(560,165)")
+        .style("fill", headColor)
+        .transition().delay(delay).duration(250).attr("transform", "translate(560,140)")
+        .transition().delay(delay + 250).duration(250).attr("transform", "translate(560,165)");
+
+    d3.select("#" + robotName + "GroupHead").append("path")
+        .attr("d", getUpperArc())
+        .attr("transform", "translate(440,265)")
+        .style("fill", headColor)
+        .transition().delay(delay).duration(250).attr("transform", "translate(440,282)")
+        .transition().delay(delay + 250).duration(250).attr("transform", "translate(440,265)");
+
+    d3.select("#" + robotName + "GroupHead").append("path")
+        .attr("d", getLowerArc())
+        .attr("transform", "translate(440,165)")
+        .style("fill", headColor)
+        .transition().delay(delay).duration(250).attr("transform", "translate(440,140)")
+        .transition().delay(delay + 250).duration(250).attr("transform", "translate(440,165)");
+}
+
+var getUpperArc = function() {
+    var pi = Math.PI;
+    return d3.svg.arc()
+        .innerRadius(70)
+        .outerRadius(87)
+        .startAngle(20 * (pi/180)) //converting from degs to radians
+        .endAngle(-20 * (pi/180));
+}
+
+var getLowerArc = function() {
+    var pi = Math.PI;
+    return d3.svg.arc()
+        .innerRadius(70)
+        .outerRadius(100)
+        .startAngle(160 * (pi/180)) //converting from degs to radians
+        .endAngle(200 * (pi/180));
+}
+
+var initEyeBlink = function() {
+    eyeBlink("robotOne", "#cce6ff");
+    eyeBlink("robotTwo", "#ffcce6");
+    eyeBlink("robotThree", "#ccffe5");
+}
