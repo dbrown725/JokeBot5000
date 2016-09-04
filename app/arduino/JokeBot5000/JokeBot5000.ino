@@ -1,6 +1,5 @@
 /*
    rosserial Publisher Example
-   Prints "hello world!"
    http://luckylarry.co.uk/arduino-projects/arduino-using-a-sharp-ir-sensor-for-distance-calculation/
    http://wiki.ros.org/roslibjs/Tutorials/BasicRosFunctionality
    http://wiki.ros.org/rosserial_arduino/Tutorials/Hello%20World
@@ -23,9 +22,6 @@ ros::NodeHandle  nh;
 std_msgs::String str_msg;
 ros::Publisher chatter("chatter", &str_msg);
 
-//char hello[15] = "I am JokeBot!";
-//char tellJoke[15] = "Tell me a joke";
-
 void setup()
 {
   //Serial.begin(57600);
@@ -43,7 +39,7 @@ void loop()
     str_msg.data = TELL_JOKE;
     chatter.publish( &str_msg );
     nh.spinOnce();
-  } // end if switchState is HIGH
+  } 
 
   float volts = analogRead(IRpin) * 0.0048828125;
   float distance = 65 * pow(volts, -1.10);
@@ -51,13 +47,13 @@ void loop()
   // only use for debugging
   //Serial.println(distance);
   int intDist = (int)distance;
-  //Test Test
   //Serial.print("intDist");
   //Serial.println(intDist);
   //Serial.println(intDist < 100);
 
 
-  //Not giving desired results, still randomly fires off a message
+  // If I get three hits less than 150 away 
+  // in less than half a second then fire a message to the topic
   if (intDist < 150) {
     count++;
     if (count == 1) {
