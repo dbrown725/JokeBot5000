@@ -17,7 +17,11 @@ var triggerJokeRepeat = function() {
     document.getElementsByClassName("repeatJoke")[0].click();
 }
 
-var startJokeRepeat = function(duration) {
+var startJokeRepeat = function(duration, shiftRobots) {
+    if (shiftRobots === 'true') {
+        console.log('shiftRobots true');
+        weatherRobotShift();
+    }
     dispatch.speakRepeat({
         "duration": duration
     });
@@ -76,14 +80,16 @@ var lastWeatherDate = new Date((new Date()).getTime() - 1000);
 listener.subscribe(function(message) {
     var voiceTypeMale = '"UK English Male",';
     var voiceTypeFemale = '"UK English Female",';
+
     if (message.data === TELL_JOKE && (lastJokeDate.getTime() + 1000) < new Date()) {
         //console.log('in TELL_JOKE');
+        var shiftRobots = false;
         lastJokeDate = new Date();
         var nextJokeIndex = Math.floor((Math.random() * data.jokes.length));
         var onClickJoke = 'responsiveVoice.speak("' + data.jokes[nextJokeIndex].joke + '", ' + voiceTypeMale +
         '{rate: 1, onstart: startJoke("' + calculateJokeDuration(data.jokes[nextJokeIndex].joke) + '"), onend: triggerJokeRepeat});';
         var onClickRepeatJoke = 'responsiveVoice.speak("' +  data.jokes[nextJokeIndex].repeatJoke + '", ' + voiceTypeFemale +
-        '{onstart: startJokeRepeat("' + calculateJokeDuration(data.jokes[nextJokeIndex].repeatJoke) + '"), onend: triggerPunchLine});';
+        '{onstart: startJokeRepeat("' + calculateJokeDuration(data.jokes[nextJokeIndex].repeatJoke) + '","' + shiftRobots + '"), onend: triggerPunchLine});';
         var onClickPunchLine = 'responsiveVoice.speak("' +  data.jokes[nextJokeIndex].punchLine + '", ' + voiceTypeMale +
         '{onstart: startPunchLine("' + calculateJokeDuration(data.jokes[nextJokeIndex].punchLine) + '"),onend: rimShot});';
 
@@ -95,13 +101,20 @@ listener.subscribe(function(message) {
 
     if (message.data === WEATHER && (lastWeatherDate.getTime() + 1000) < new Date()) {
         //console.log('in WEATHER');
+        var shiftRobots = true;
         lastWeatherDate = new Date();
-        var weatherText = '';
-        var weatherCB = function(text) {
-            weatherText = text;
-            var onClickJoke = 'responsiveVoice.speak("' +  weatherText + '", ' + voiceTypeFemale +
-            '{onstart: startJokeRepeat("' + calculateJokeDuration(weatherText) + '")});';
+        var weatherCB = function(weatherText) {
+            weatherText = 'Oh JokeBot you know I can not control the weather ' + weatherText;
+            var weatherIntro = 'Here is Rosie with the weather. I hope you are not going to ruin my golf game tomorrow'
+            var onClickJoke = 'responsiveVoice.speak("' + weatherIntro + '", ' + voiceTypeMale +
+            '{rate: 1, onstart: startJoke("' + calculateJokeDuration(weatherIntro) + '"), onend: triggerJokeRepeat});';
+            var onClickRepeatJoke = 'responsiveVoice.speak("' +  weatherText + '", ' + voiceTypeFemale +
+            '{onstart: startJokeRepeat("' + calculateJokeDuration(weatherText) + '","' + shiftRobots + '")});';
+
+            // var onClickJoke = 'responsiveVoice.speak("' +  weatherText + '", ' + voiceTypeFemale +
+            // '{onstart: startJokeRepeat("' + calculateJokeDuration(weatherText) + '")});';
             document.getElementsByClassName("joke")[0].setAttribute("onclick", onClickJoke);
+            document.getElementsByClassName("repeatjoke")[0].setAttribute("onclick", onClickRepeatJoke);
             document.getElementsByClassName("joke")[0].click();
         }
 

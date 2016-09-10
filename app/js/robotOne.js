@@ -1,7 +1,7 @@
 
 function loadRobotOne() {
 
-    var robotOneGroup = svgContainer.append("g");
+    var robotOneGroup = svgContainer.append("g").attr("id", "robotOneGroup");
 
     var robotOneGroupBody = robotOneGroup.append("g");
 

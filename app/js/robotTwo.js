@@ -1,7 +1,7 @@
 
 function loadRobotTwo() {
 
-    var robotTwoGroup = svgContainer.append("g");
+    var robotTwoGroup = svgContainer.append("g").attr("id", "robotTwoGroup");
 
     var robotTwoGroupBody = robotTwoGroup.append("g");
 

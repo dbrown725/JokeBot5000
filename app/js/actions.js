@@ -231,3 +231,12 @@ var initEyeBlink = function() {
     eyeBlink("robotTwo", "#ffcce6");
     eyeBlink("robotThree", "#ccffe5");
 }
+
+var weatherRobotShift = function() {
+    d3.select("#robotThreeGroup").transition().delay(500).duration(2000).attr("transform", "scale(.35)translate(-900,800)");
+    d3.select("#robotThreeGroup").transition().delay(15000).duration(2000).attr("transform", "scale(.35)translate(100, 125)");
+    d3.select("#robotOneGroup").transition().delay(500).duration(2000).attr("transform", "translate(-900,800)");
+    d3.select("#robotOneGroup").transition().delay(15000).duration(2000).attr("transform", "translate(150, 75)");
+    d3.select("#robotTwoGroup").transition().delay(1000).duration(2000).attr("transform", "translate(-100,0)");
+    d3.select("#robotTwoGroup").transition().delay(15000).duration(2000).attr("transform", "scale(.5)translate(1620, 125)");
+}
