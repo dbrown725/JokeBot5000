@@ -9,9 +9,11 @@
 #include <std_msgs/String.h>
 
 const int IRpin = 1;
-const byte switchPin = 8;
+const byte switchJoke = 8;
+const byte switchWeather = 7;
 const char INTRO[6] = "INTRO";
 const char TELL_JOKE[10] = "TELL_JOKE";
+const char WEATHER[8] = "WEATHER";
 
 int count = 0;
 unsigned long last_time_in_range;
@@ -27,19 +29,29 @@ void setup()
   //Serial.begin(57600);
   nh.initNode();
   nh.advertise(chatter);
-  pinMode (switchPin, INPUT);
+  pinMode (switchJoke, INPUT);
+  pinMode (switchWeather, INPUT);
 }
 
 void loop()
 {
-  if (digitalRead (switchPin) == HIGH)
+  if (digitalRead (switchJoke) == HIGH)
   {
     //Serial.println ("Switch closed.");
     delay (1000);
     str_msg.data = TELL_JOKE;
     chatter.publish( &str_msg );
     nh.spinOnce();
-  } 
+  }
+
+  if (digitalRead (switchWeather) == HIGH)
+  {
+    //Serial.println ("Switch closed.");
+    delay (1000);
+    str_msg.data = WEATHER;
+    chatter.publish( &str_msg );
+    nh.spinOnce();
+  }
 
   float volts = analogRead(IRpin) * 0.0048828125;
   float distance = 65 * pow(volts, -1.10);
@@ -52,7 +64,7 @@ void loop()
   //Serial.println(intDist < 100);
 
 
-  // If I get three hits less than 150 away 
+  // If I get three hits less than 150 away
   // in less than half a second then fire a message to the topic
   if (intDist < 150) {
     count++;
