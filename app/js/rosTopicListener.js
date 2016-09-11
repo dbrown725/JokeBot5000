@@ -19,7 +19,6 @@ var triggerJokeRepeat = function() {
 
 var startJokeRepeat = function(duration, shiftRobots) {
     if (shiftRobots === 'true') {
-        console.log('shiftRobots true');
         weatherRobotShift();
     }
     dispatch.speakRepeat({
