@@ -237,6 +237,16 @@ var weatherRobotShift = function() {
     d3.select("#robotThreeGroup").transition().delay(15000).duration(2000).attr("transform", "scale(.35)translate(100, 125)");
     d3.select("#robotOneGroup").transition().delay(500).duration(2000).attr("transform", "translate(-900,800)");
     d3.select("#robotOneGroup").transition().delay(15000).duration(2000).attr("transform", "translate(150, 75)");
-    d3.select("#robotTwoGroup").transition().delay(1000).duration(2000).attr("transform", "translate(-100,0)");
+    d3.select("#robotTwoGroup").transition().delay(1000).duration(2000).attr("transform", "translate(-100,30)");
     d3.select("#robotTwoGroup").transition().delay(15000).duration(2000).attr("transform", "scale(.5)translate(1620, 125)");
+    d3.select("#weatherLogo").transition().delay(1500).duration(2000).attr("opacity", "1");
+    d3.select("#weatherLogo").transition().delay(14000).duration(2000).attr("opacity", "0");
+    d3.select("#weatherLogoIntro").transition().delay(1500).duration(2000).attr("opacity", "1");
+    d3.select("#weatherLogoIntro").transition().delay(14000).duration(2000).attr("opacity", "0");
+    var temperature = currentConditions.current_observation.temperature_string;
+    var currentConditionsIcon = currentConditions.current_observation.icon_url;
+    d3.select("#currentTemperature").transition().delay(1500).duration(2000).text(temperature).attr("opacity", 1);
+    d3.select("#currentTemperature").transition().delay(14000).duration(2000).attr("opacity", 0);
+    d3.select("#currentWeatherIcon").transition().delay(1500).duration(2000).attr("xlink:href", currentConditionsIcon).attr("opacity", "1");
+    d3.select("#currentWeatherIcon").transition().delay(14000).duration(2000).attr("opacity", "0");
 }
