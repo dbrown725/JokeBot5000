@@ -4,6 +4,7 @@ const CRICKETS = 'CRICKETS';
 const APPLAUSE = 'APPLAUSE';
 const NONE = 'NONE';
 const WEATHER = 'WEATHER';
+const GREETING = 'GREETING';
 const MOVE_LEFT = 'MOVE_LEFT';
 const MOVE_RIGHT = 'MOVE_RIGHT';
 // https://bl.ocks.org/mbostock/5872848
@@ -38,6 +39,42 @@ var startPunchLine = function(duration) {
         "duration": duration
     });
 }
+
+var triggerGreetingResponse = function() {
+    document.getElementsByClassName("greetingResponse")[0].click();
+}
+
+// var startGreetingResponse = function(duration) {
+//     dispatch.speak({
+//         "duration": duration
+//     });
+// }
+
+var triggerRosieResponse = function() {
+    document.getElementsByClassName("rosieResponse")[0].click();
+}
+
+// var startRosieResponse = function(duration) {
+//     dispatch.speakRepeat({
+//         "duration": duration
+//     });
+// }
+
+var triggerJokeBotAngry = function() {
+    document.getElementsByClassName("jokeBotAngry")[0].click();
+}
+
+// var startJokeBotAngry = function(duration) {
+//     dispatch.speak({
+//         "duration": duration
+//     });
+// }
+
+
+var triggerFinalWord = function() {
+    document.getElementsByClassName("finalWord")[0].click();
+}
+
 
 var rimShot = function() {
     dispatch.drummer({
@@ -97,6 +134,7 @@ listener.subscribe(function(message) {
         //console.log('in TELL_JOKE');
         var shiftRobots = false;
         lastJokeDate = new Date();
+        lastDate = new Date();
         var nextJokeIndex = Math.floor((Math.random() * data.jokes.length));
         var onClickJoke = 'responsiveVoice.speak("' + data.jokes[nextJokeIndex].joke + '", ' + voiceTypeMale +
         '{rate: 1, onstart: startJoke("' + calculateJokeDuration(data.jokes[nextJokeIndex].joke) + '"), onend: triggerJokeRepeat});';
@@ -112,17 +150,20 @@ listener.subscribe(function(message) {
     }
 
     if (message.data === CRICKETS) {
+        lastDate = new Date();
         crickets();
     }
 
     if (message.data === APPLAUSE) {
+        lastDate = new Date();
         applause();
     }
 
     if (message.data === NONE) {
         var shiftRobots = false;
+        lastDate = new Date();
         var jokeBotText = "That button does nothing but if it makes you feel good please feel free to keep pushing it."
-        var rosieText = "Ha ha ha good one JokeBot. Humans!"
+        var rosieText = "Ha ha ha good one JokeBot. humans"
         var onClickJoke = 'responsiveVoice.speak("' + jokeBotText + '", ' + voiceTypeMale +
         '{rate: 1, onstart: startJoke("' + calculateJokeDuration(jokeBotText) + '"), onend: triggerJokeRepeat});';
         var onClickRepeatJoke = 'responsiveVoice.speak("' +  rosieText + '", ' + voiceTypeFemale +
@@ -133,10 +174,44 @@ listener.subscribe(function(message) {
         document.getElementsByClassName("joke")[0].click();
     }
 
+    if (message.data === GREETING) {
+        var shiftRobots = false;
+        lastDate = new Date();
+        var jokeBotText = "I am joke bot 5000! Good morning Brandon.";
+        var rosieText = "Good morning Brandon";
+        var jokeBotResponse = "I already said good morning to Brandon." +
+            "There is not need for you to say good morning to Brandon.";
+        var rosieResponse = "If I want to say good morning to Brandon I will say good morning to Brandon";
+        var jokeBotAngry = "I am joke bot 5000!";
+        var finalWord = "yeah, yeah, yeah, well anyway it is very nice to see you Brandon!"
+        var onClickJoke = 'responsiveVoice.speak("' + jokeBotText + '", ' + voiceTypeMale +
+        '{rate: 1, onstart: startJoke("' + calculateJokeDuration(jokeBotText) + '"), onend: triggerJokeRepeat});';
+        var onClickRepeatJoke = 'responsiveVoice.speak("' +  rosieText + '", ' + voiceTypeFemale +
+        '{onstart: startJokeRepeat("' + calculateJokeDuration(rosieText) + '","' + shiftRobots + '"), onend: triggerGreetingResponse});';
+        var onClickGreetingResponse = 'responsiveVoice.speak("' + jokeBotResponse + '", ' + voiceTypeMale +
+        '{rate: 1, onstart: startJoke("' + calculateJokeDuration(jokeBotResponse) + '"), onend: triggerRosieResponse});';
+        var onClickRosieResponse = 'responsiveVoice.speak("' +  rosieResponse + '", ' + voiceTypeFemale +
+        '{onstart: startJokeRepeat("' + calculateJokeDuration(rosieResponse) + '","' + shiftRobots + '"), onend: triggerJokeBotAngry});';
+        var onClickJokeBotAngry = 'responsiveVoice.speak("' + jokeBotAngry + '", ' + voiceTypeMale +
+        '{rate: 1, onstart: startJoke("' + calculateJokeDuration(jokeBotAngry) + '"), onend: triggerFinalWord});';
+        var onClickFinalWord = 'responsiveVoice.speak("' + finalWord + '", ' + voiceTypeFemale +
+        '{rate: 1, onstart: startJokeRepeat("' + calculateJokeDuration(finalWord) + '")});';
+
+
+        document.getElementsByClassName("joke")[0].setAttribute("onclick", onClickJoke);
+        document.getElementsByClassName("repeatjoke")[0].setAttribute("onclick", onClickRepeatJoke);
+        document.getElementsByClassName("greetingResponse")[0].setAttribute("onclick", onClickGreetingResponse);
+        document.getElementsByClassName("rosieResponse")[0].setAttribute("onclick", onClickRosieResponse);
+        document.getElementsByClassName("jokeBotAngry")[0].setAttribute("onclick", onClickJokeBotAngry);
+        document.getElementsByClassName("finalWord")[0].setAttribute("onclick", onClickFinalWord);
+        document.getElementsByClassName("joke")[0].click();
+    }
+
     if (message.data === WEATHER && (lastWeatherDate.getTime() + 1000) < new Date()) {
         //console.log('in WEATHER');
         var shiftRobots = true;
         lastWeatherDate = new Date();
+        lastDate = new Date();
         var weatherCB = function(weatherText) {
             weatherText = 'Oh JokeBot you know I can not control the weather ' + weatherText;
             var weatherIntro = 'Here is Rosie with the weather. I hope you are not going to ruin my golf game tomorrow'
@@ -156,7 +231,7 @@ listener.subscribe(function(message) {
     }
 
     //listener.unsubscribe();
-    if (message.data === INTRO && (lastDate.getTime() + 10000) < new Date()) {
+    if (message.data === INTRO && (lastDate.getTime() + 60000) < new Date()) {
         lastDate = new Date();
         document.getElementsByClassName("intro")[0].click();
         var duration = 22;
