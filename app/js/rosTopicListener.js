@@ -1,5 +1,8 @@
 const INTRO = 'INTRO';
 const TELL_JOKE = 'TELL_JOKE';
+const CRICKETS = 'CRICKETS';
+const APPLAUSE = 'APPLAUSE';
+const NONE = 'NONE';
 const WEATHER = 'WEATHER';
 const MOVE_LEFT = 'MOVE_LEFT';
 const MOVE_RIGHT = 'MOVE_RIGHT';
@@ -43,6 +46,14 @@ var rimShot = function() {
     document.getElementById("rimShot").play();
 }
 
+var crickets = function() {
+    document.getElementById("crickets").play();
+}
+
+var applause = function() {
+    document.getElementById("applause").play();
+}
+
 // Connecting to ROS
 // -----------------
 
@@ -80,6 +91,8 @@ listener.subscribe(function(message) {
     var voiceTypeMale = '"UK English Male",';
     var voiceTypeFemale = '"UK English Female",';
 
+    console.log('message.data', message.data);
+
     if (message.data === TELL_JOKE && (lastJokeDate.getTime() + 1000) < new Date()) {
         //console.log('in TELL_JOKE');
         var shiftRobots = false;
@@ -95,6 +108,28 @@ listener.subscribe(function(message) {
         document.getElementsByClassName("joke")[0].setAttribute("onclick", onClickJoke);
         document.getElementsByClassName("repeatjoke")[0].setAttribute("onclick", onClickRepeatJoke);
         document.getElementsByClassName("punchLine")[0].setAttribute("onclick", onClickPunchLine);
+        document.getElementsByClassName("joke")[0].click();
+    }
+
+    if (message.data === CRICKETS) {
+        crickets();
+    }
+
+    if (message.data === APPLAUSE) {
+        applause();
+    }
+
+    if (message.data === NONE) {
+        var shiftRobots = false;
+        var jokeBotText = "That button does nothing but if it makes you feel good please feel free to keep pushing it."
+        var rosieText = "Ha ha ha good one JokeBot. Humans!"
+        var onClickJoke = 'responsiveVoice.speak("' + jokeBotText + '", ' + voiceTypeMale +
+        '{rate: 1, onstart: startJoke("' + calculateJokeDuration(jokeBotText) + '"), onend: triggerJokeRepeat});';
+        var onClickRepeatJoke = 'responsiveVoice.speak("' +  rosieText + '", ' + voiceTypeFemale +
+        '{onstart: startJokeRepeat("' + calculateJokeDuration(rosieText) + '","' + shiftRobots + '")});';
+
+        document.getElementsByClassName("joke")[0].setAttribute("onclick", onClickJoke);
+        document.getElementsByClassName("repeatjoke")[0].setAttribute("onclick", onClickRepeatJoke);
         document.getElementsByClassName("joke")[0].click();
     }
 

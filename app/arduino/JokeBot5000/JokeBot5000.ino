@@ -10,9 +10,15 @@
 
 const int IRpin = 1;
 const byte switchJoke = 8;
-const byte switchWeather = 7;
+const byte switchApplause = 5;
+const byte switchCrickets = 7;
+const byte switchNone = 6;
+const byte switchWeather = 9;
 const char INTRO[6] = "INTRO";
 const char TELL_JOKE[10] = "TELL_JOKE";
+const char APPLAUSE[9] = "APPLAUSE";
+const char CRICKETS[9] = "CRICKETS";
+const char NONE[5] = "NONE";
 const char WEATHER[8] = "WEATHER";
 
 int count = 0;
@@ -44,6 +50,33 @@ void loop()
     nh.spinOnce();
   }
 
+  if (digitalRead (switchApplause) == HIGH)
+  {
+    //Serial.println ("Switch closed.");
+    delay (1000);
+    str_msg.data = APPLAUSE;
+    chatter.publish( &str_msg );
+    nh.spinOnce();
+  }
+
+  if (digitalRead (switchCrickets) == HIGH)
+  {
+    //Serial.println ("Switch closed.");
+    delay (1000);
+    str_msg.data = CRICKETS;
+    chatter.publish( &str_msg );
+    nh.spinOnce();
+  }
+  
+  if (digitalRead (switchNone) == HIGH)
+  {
+    //Serial.println ("Switch closed.");
+    delay (1000);
+    str_msg.data = NONE;
+    chatter.publish( &str_msg );
+    nh.spinOnce();
+  }
+
   if (digitalRead (switchWeather) == HIGH)
   {
     //Serial.println ("Switch closed.");
@@ -52,7 +85,7 @@ void loop()
     chatter.publish( &str_msg );
     nh.spinOnce();
   }
-
+  
   float volts = analogRead(IRpin) * 0.0048828125;
   float distance = 65 * pow(volts, -1.10);
   // rosserial will not run if code has Serial statements
