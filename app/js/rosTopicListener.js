@@ -20,7 +20,7 @@ var startJoke = function(duration) {
 }
 
 var triggerJokeRepeat = function() {
-    document.querySelector(".repeatJoke")[0].click();
+    document.querySelector(".repeatJoke").click();
 }
 
 var startJokeRepeat = function(duration, shiftRobots) {
