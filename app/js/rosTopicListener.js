@@ -93,6 +93,12 @@ var applause = function() {
     document.getElementById("applause").play();
 }
 
+var showKeyOptions = function() {
+    alert( "Type 'j' to hear a joke. \nType 'y' if you like the joke. \nType 'n' if you don't like the joke.\nType 'w' for the weather." +
+        ' \n\nNote: To see these options later click on any of the robots' +
+        ' \n\nNote: Weather requires an https://www.wunderground.com/ API key added to config.js. \n\n');
+}
+
 // Connecting to ROS
 // -----------------
 
@@ -106,6 +112,7 @@ ros.on('connection', function() {
 
 ros.on('error', function(error) {
     //console.log('Error connecting to websocket server: ', error);
+    showKeyOptions();
 });
 
 ros.on('close', function() {
@@ -209,7 +216,7 @@ function handleEvent(message, isKeyEvent){
         if (message.data === NONE) {
             var shiftRobots = false;
             lastDate = new Date();
-            var jokeBotText = "That button does nothing but if it makes you feel good please feel free to keep pushing it."
+            var jokeBotText = "That button does nothing but if it makes you feel good please keep pushing it."
             var rosieText = "Ha ha ha good one JokeBot. humans"
             var onClickJoke = 'responsiveVoice.speak("' + jokeBotText + '", ' + voiceTypeMale +
             '{rate: 1, onstart: startJoke("' + calculateJokeDuration(jokeBotText) + '"), onend: triggerJokeRepeat});';

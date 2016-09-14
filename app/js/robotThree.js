@@ -2,6 +2,7 @@
 function loadRobotThree() {
 
     var robotThreeGroup = svgContainer.append("g").attr("id", "robotThreeGroup");
+    robotThreeGroup.on('click', showKeyOptions);
 
     var robotThreeGroupBody = robotThreeGroup.append("g");
 
