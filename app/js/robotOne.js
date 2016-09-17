@@ -4,9 +4,9 @@ function loadRobotOne() {
     var robotOneGroup = svgContainer.append("g").attr("id", "robotOneGroup");
     robotOneGroup.on('click', showKeyOptions);
 
-    var robotOneGroupBody = robotOneGroup.append("g");
-
     var robotOneGroupHead = robotOneGroup.append("g").attr("id", "robotOneGroupHead");
+
+    var robotOneGroupBody = robotOneGroup.append("g");
 
     var leftAntena = buildAndAppendPath(robotOneGroupHead, buildLineData(440, 170, 415, 130), "#999999", 6, "leftAntenaGraph", "");
     var leftAntenaCircle = buildAndAppendCircle(robotOneGroupHead, 415, 130, 12, "leftAntenaCircle", "#e69500", 1);
@@ -61,8 +61,50 @@ function loadRobotOne() {
     var robotOneRightArmHand = buildAndAppendCircle(robotOneGroupRightArm, 848, 400, 35, "robotOneRightArmHand", "#e69500", 1);
     var robotOneRightArmHandHide = buildAndAppendCircle(robotOneGroupRightArm, 863, 406, 30, "robotOneRightArmHandHide", "white", 1);
 
-    //eyeBlink("robotOne", 2000, "green");
-    //eyeBlink("robotOne", 4000, "green");
+    var robotOneLightSection = robotOneGroup.append("g");
+    var robotOneLightPanel = buildAndAppendRect(robotOneLightSection, 360, 310, 60, 100, "robotOneLightPanel", "#cce6ff", 1);
 
+    var randomizer = [];
+    randomizer.push(Array.apply(null, Array(125)).map(Number.prototype.valueOf,1));
+    randomizer.push(Array.apply(null, Array(125)).map(Number.prototype.valueOf,2));
+    randomizer.push(Array.apply(null, Array(125)).map(Number.prototype.valueOf,3));
+    randomizer.push(Array.apply(null, Array(125)).map(Number.prototype.valueOf,4));
+    console.log('randomizer', randomizer);
+    var y = new Array(17);
+    for (var i = 0; i < y.length; i++) {
+        y[i] = new Array(27);
+        for (var j = 0; j < y[i].length; j++) {
+            // builds base circle that has the robot's normal blue background color but with a thin border
+            buildAndAppendCircle(robotOneLightSection, 370 + (j * 10), 320 + (i * 10), 4,  id, "#cce6ff", 1)
+                .attr("stroke", "#808080")
+                .attr("stroke-width", .20);
+
+            // builds the white circles that blink
+            var id = "lightr" + i + "c" + j
+            y[i][j] = buildAndAppendCircle(robotOneLightSection, 370 + (j * 10), 320 + (i * 10), 3,  id, "white", 0)
+                .style("opacity", Math.floor(Math.random() * 2));
+
+            setBlinkRate(id, randomizer);
+        }
+    }
     robotOneGroup.attr("transform", "translate(150, 75)");
+}
+
+var setBlinkRate = function(id, randomizer) {
+    //var randomizer = Math.floor(Math.random() * 4) + 1
+    var delay = 0;
+    //console.log('randomizer.length', randomizer.length);
+    var index = Math.floor(Math.random() * (randomizer.length));
+    //console.log('index', index);
+    delay = randomizer[index].pop() * 3000;
+    //console.log('delay', delay);
+    if (randomizer[index].length === 0) {
+        randomizer.splice(index, 1);
+    }
+    //var delay = randomizer * 2000;
+    for (var i=1; i < 40; i++) {
+        d3.select("#" + id).transition().delay(delay).duration(200).style("opacity", 1);
+        d3.select("#" + id).transition().delay(delay + 3000).duration(200).style("opacity", 0);
+        delay = delay + 12000;
+    }
 }

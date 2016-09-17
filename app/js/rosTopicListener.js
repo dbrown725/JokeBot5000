@@ -184,6 +184,8 @@ function handleEvent(message, isKeyEvent){
 
         console.log('message.data', message.data);
 
+        removeExistingListners();
+
         if (message.data === TELL_JOKE && (lastJokeDate.getTime() + 1000) < new Date()) {
             //console.log('in TELL_JOKE');
             var shiftRobots = false;
@@ -301,6 +303,15 @@ function handleEvent(message, isKeyEvent){
         if (message.data === MOVE_RIGHT) {
             console.log("move right");
         }
+}
+
+function removeExistingListners() {
+    document.querySelector(".joke").removeAttribute("onclick");
+    document.querySelector(".repeatjoke").removeAttribute("onclick");
+    document.querySelector(".greetingResponse").removeAttribute("onclick");
+    document.querySelector(".rosieResponse").removeAttribute("onclick");
+    document.querySelector(".jokeBotAngry").removeAttribute("onclick");
+    document.querySelector(".finalWord").removeAttribute("onclick");
 }
 
 function calculateJokeDuration(text) {
