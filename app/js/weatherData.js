@@ -1,5 +1,5 @@
 var currentConditions = {};
-var forcast = {};
+var forecast = {};
 var geolookup = {};
 var lastUpdate = '';
 var weatherResponse = '';
@@ -17,7 +17,7 @@ var getWeather = function(callBack) {
                     dataType : "jsonp",
                     success : function(parsed_json) {
                         console.log('parsed_json', parsed_json);
-                        forcast = parsed_json;
+                        forecast = parsed_json;
                         $.ajax({
                             url : "http://api.wunderground.com/api/" + config.weatherAPIKey + "/geolookup/q/" + config.weatherState + '/' + config.weatherCity + ".json",
                             dataType : "jsonp",

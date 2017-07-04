@@ -249,4 +249,58 @@ var weatherRobotShift = function() {
     d3.select("#currentTemperature").transition().delay(14000).duration(2000).attr("opacity", 0);
     d3.select("#currentWeatherIcon").transition().delay(1500).duration(2000).attr("xlink:href", currentConditionsIcon).attr("opacity", "1");
     d3.select("#currentWeatherIcon").transition().delay(14000).duration(2000).attr("opacity", "0");
+    var fc1Icon = forecast.forecast.txt_forecast.forecastday[0].icon_url
+    d3.select("#forecast1Icon").transition().delay(1500).duration(2000).attr("xlink:href", fc1Icon).attr("opacity", "1");
+    d3.select("#forecast1Icon").transition().delay(14000).duration(2000).attr("opacity", "1");
+    d3.select("#forecast1Icon").transition().delay(14000).duration(2000).attr("opacity", "0");
+    var wholeTextFc1 = forecast.forecast.txt_forecast.forecastday[0].title + ': ' + forecast.forecast.txt_forecast.forecastday[0].fcttext;
+    var fc1Text1 = wholeTextFc1.substring(0, wholeTextFc1.indexOf(" ", 100));
+    var fc1Text2 = wholeTextFc1.substring(wholeTextFc1.indexOf(" ", 100));
+    d3.select("#forecast1Line1").transition().delay(1500).duration(2000).text(fc1Text1).attr("opacity", 1);
+    d3.select("#forecast1Line1").transition().delay(14000).duration(2000).attr("opacity", 1);
+    d3.select("#forecast1Line1").transition().delay(14000).duration(2000).attr("opacity", "0");
+    d3.select("#forecast1Line2").transition().delay(1500).duration(2000).text(fc1Text2).attr("opacity", 1);
+    d3.select("#forecast1Line2").transition().delay(14000).duration(2000).attr("opacity", 1);
+    d3.select("#forecast1Line2").transition().delay(14000).duration(2000).attr("opacity", "0");
+    var fc2Icon = forecast.forecast.txt_forecast.forecastday[1].icon_url
+    d3.select("#forecast2Icon").transition().delay(1500).duration(2000).attr("xlink:href", fc2Icon).attr("opacity", "1");
+    d3.select("#forecast2Icon").transition().delay(14000).duration(2000).attr("opacity", "1");
+    d3.select("#forecast2Icon").transition().delay(14000).duration(2000).attr("opacity", "0");
+    var wholeTextFc2 = forecast.forecast.txt_forecast.forecastday[1].title + ': ' + forecast.forecast.txt_forecast.forecastday[1].fcttext;
+    var fc2Text1 = wholeTextFc2.substring(0, wholeTextFc2.indexOf(" ", 100));
+    var fc2Text2 = wholeTextFc2.substring(wholeTextFc2.indexOf(" ", 100));
+    d3.select("#forecast2Line1").transition().delay(1500).duration(2000).text(fc2Text1).attr("opacity", 1);
+    d3.select("#forecast2Line1").transition().delay(14000).duration(2000).attr("opacity", 1);
+    d3.select("#forecast2Line1").transition().delay(14000).duration(2000).attr("opacity", 0);
+    d3.select("#forecast2Line2").transition().delay(1500).duration(2000).text(fc2Text2).attr("opacity", 1);
+    d3.select("#forecast2Line2").transition().delay(14000).duration(2000).attr("opacity", 1);
+    d3.select("#forecast2Line2").transition().delay(14000).duration(2000).attr("opacity", 0);
+    var fc3Icon = forecast.forecast.txt_forecast.forecastday[2].icon_url
+    d3.select("#forecast3Icon").transition().delay(1500).duration(2000).attr("xlink:href", fc3Icon).attr("opacity", "1");
+    d3.select("#forecast3Icon").transition().delay(14000).duration(2000).attr("opacity", "1");
+    d3.select("#forecast3Icon").transition().delay(14000).duration(2000).attr("opacity", "0");
+    var wholeTextFc3 = forecast.forecast.txt_forecast.forecastday[2].title + ': ' + forecast.forecast.txt_forecast.forecastday[2].fcttext;
+    var fc3Text1 = wholeTextFc3.substring(0, wholeTextFc3.indexOf(" ", 100));
+    var fc3Text2 = wholeTextFc3.substring(wholeTextFc3.indexOf(" ", 100));
+    d3.select("#forecast3Line1").transition().delay(1500).duration(2000).text(fc3Text1).attr("opacity", 1);
+    d3.select("#forecast3Line1").transition().delay(14000).duration(2000).attr("opacity", 1);
+    d3.select("#forecast3Line1").transition().delay(14000).duration(2000).attr("opacity", "0");
+    d3.select("#forecast3Line2").transition().delay(1500).duration(2000).text(fc3Text2).attr("opacity", 1);
+    d3.select("#forecast3Line2").transition().delay(14000).duration(2000).attr("opacity", 1);
+    d3.select("#forecast3Line2").transition().delay(14000).duration(2000).attr("opacity", "0");
+    var fc3Icon = forecast.forecast.txt_forecast.forecastday[3].icon_url
+    d3.select("#forecast4Icon").transition().delay(1500).duration(2000).attr("xlink:href", fc3Icon).attr("opacity", "1");
+    d3.select("#forecast4Icon").transition().delay(14000).duration(2000).attr("opacity", "1");
+    d3.select("#forecast4Icon").transition().delay(14000).duration(2000).attr("opacity", "0");
+    var wholeTextFc4 = forecast.forecast.txt_forecast.forecastday[3].title + ': ' + forecast.forecast.txt_forecast.forecastday[3].fcttext;
+    var fc4Text1 = wholeTextFc4.substring(0, wholeTextFc4.indexOf(" ", 100));
+    var fc4Text2 = wholeTextFc4.substring(wholeTextFc4.indexOf(" ", 100));
+    d3.select("#forecast4Line1").transition().delay(1500).duration(2000).text(fc4Text1).attr("opacity", 1);
+    d3.select("#forecast4Line1").transition().delay(14000).duration(2000).attr("opacity", 1);
+    d3.select("#forecast4Line1").transition().delay(14000).duration(2000).attr("opacity", "0");
+    d3.select("#forecast4Line2").transition().delay(1500).duration(2000).text(fc4Text2).attr("opacity", 1);
+    d3.select("#forecast4Line2").transition().delay(14000).duration(2000).attr("opacity", 1);
+    d3.select("#forecast4Line2").transition().delay(14000).duration(2000).attr("opacity", "0");
+    console.log('forecast.forecast.txt_forecast.forecastday', forecast.forecast.txt_forecast.forecastday);
+
 }

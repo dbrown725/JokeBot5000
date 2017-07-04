@@ -70,6 +70,7 @@ function loadRobotOne() {
     randomizer.push(Array.apply(null, Array(125)).map(Number.prototype.valueOf,3));
     randomizer.push(Array.apply(null, Array(125)).map(Number.prototype.valueOf,4));
     console.log('randomizer', randomizer);
+    var rateAdjuster = 0;
     var y = new Array(17);
     for (var i = 0; i < y.length; i++) {
         y[i] = new Array(27);
@@ -84,27 +85,29 @@ function loadRobotOne() {
             y[i][j] = buildAndAppendCircle(robotOneLightSection, 370 + (j * 10), 320 + (i * 10), 3,  id, "white", 0)
                 .style("opacity", Math.floor(Math.random() * 2));
 
-            setBlinkRate(id, randomizer);
+            setBlinkRate(id, randomizer, rateAdjuster);
         }
+        // rateAdjuster: stops rolling blink effect caused by the time it takes to loop through all lights.
+        // Before the adjustment the lights don't blink simultaneously but instead appear to roll down the screen
+        rateAdjuster = rateAdjuster + 50;
     }
     robotOneGroup.attr("transform", "translate(150, 75)");
 }
 
-var setBlinkRate = function(id, randomizer) {
-    //var randomizer = Math.floor(Math.random() * 4) + 1
+var setBlinkRate = function(id, randomizer, rateAdjuster) {
     var delay = 0;
-    //console.log('randomizer.length', randomizer.length);
     var index = Math.floor(Math.random() * (randomizer.length));
-    //console.log('index', index);
     delay = randomizer[index].pop() * 3000;
-    //console.log('delay', delay);
+    console.log('delay', delay);
     if (randomizer[index].length === 0) {
         randomizer.splice(index, 1);
     }
-    //var delay = randomizer * 2000;
     for (var i=1; i < 40; i++) {
+        if(i === 1) {
+          delay = delay - rateAdjuster;
+        }
         d3.select("#" + id).transition().delay(delay).duration(200).style("opacity", 1);
         d3.select("#" + id).transition().delay(delay + 3000).duration(200).style("opacity", 0);
         delay = delay + 12000;
     }
-}
+};
