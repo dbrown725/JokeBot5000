@@ -102,32 +102,32 @@ var showKeyOptions = function() {
 // Connecting to ROS
 // -----------------
 
-var ros = new ROSLIB.Ros({
-    url: 'ws://localhost:9090'
-});
+// var ros = new ROSLIB.Ros({
+//     url: 'ws://localhost:9090'
+// });
 
-ros.on('connection', function() {
-    //console.log('Connected to websocket server.');
-});
-
-ros.on('error', function(error) {
-    //console.log('Error connecting to websocket server: ', error);
-    showKeyOptions();
-});
-
-ros.on('close', function() {
-    //console.log('Connection to websocket server closed.');
-});
+// ros.on('connection', function() {
+//     //console.log('Connected to websocket server.');
+// });
+//
+// ros.on('error', function(error) {
+//     //console.log('Error connecting to websocket server: ', error);
+//     showKeyOptions();
+// });
+//
+// ros.on('close', function() {
+//     //console.log('Connection to websocket server closed.');
+// });
 
 
 // Subscribing to a Topic
 // ----------------------
 
-var listener = new ROSLIB.Topic({
-    ros: ros,
-    name: '/chatter',
-    messageType: 'std_msgs/String'
-});
+// var listener = new ROSLIB.Topic({
+//     ros: ros,
+//     name: '/chatter',
+//     messageType: 'std_msgs/String'
+// });
 var lastDate = new Date((new Date()).getTime() - 10000);
 var lastJokeDate = new Date((new Date()).getTime() - 1000);
 var lastWeatherDate = new Date((new Date()).getTime() - 1000);
