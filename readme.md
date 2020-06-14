@@ -2,6 +2,7 @@ Jokebot 5000
 ===============
 
 Introduction:
+
 -----------
 Jokebot 5000 is an application that serves as an exploration playground around the following items:
 - Robot Operating System (ROS)
